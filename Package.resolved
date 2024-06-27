@@ -1,6 +1,42 @@
 {
-  "originHash" : "7e3f2d1d084f6a6338207ca6b7c9f18d57b48788b7f08d40c3456a092a811e64",
+  "originHash" : "6819c3e23c74ec03ee74e755d5fc76d034d42fa46987ec5de0eeabb41143e275",
   "pins" : [
+    {
+      "identity" : "catena",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Fleuronic/Catena",
+      "state" : {
+        "branch" : "main",
+        "revision" : "ad9f4396551a605a1bcea5b977393b7761638161"
+      }
+    },
+    {
+      "identity" : "catenoid",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Fleuronic/Catenoid",
+      "state" : {
+        "branch" : "main",
+        "revision" : "0509f43c407260ebfef37067091fac31c8496713"
+      }
+    },
+    {
+      "identity" : "dewdrop",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Fleuronic/Dewdrop",
+      "state" : {
+        "branch" : "main",
+        "revision" : "e75eb6e017cd715a2fdd160a65de568167f20811"
+      }
+    },
+    {
+      "identity" : "dewdropservice",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Fleuronic/DewdropService",
+      "state" : {
+        "branch" : "main",
+        "revision" : "b149c9d41663428f93022f52ffa84b309196e7e0"
+      }
+    },
     {
       "identity" : "differ",
       "kind" : "remoteSourceControl",
