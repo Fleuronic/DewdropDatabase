@@ -7,7 +7,7 @@
       "location" : "https://github.com/Fleuronic/Catena",
       "state" : {
         "branch" : "main",
-        "revision" : "0dd87192edc097d0a62c2acb2e3a1ff1cb030096"
+        "revision" : "bfa2630ad9c9876e70945dbcef9e56feeba73497"
       }
     },
     {
@@ -16,7 +16,7 @@
       "location" : "https://github.com/Fleuronic/Catenoid",
       "state" : {
         "branch" : "main",
-        "revision" : "fda7e255d2e1d01e6a205f6c29a7ea8ad2ceaee3"
+        "revision" : "0585be4e4489558cb51cc5f686d39b1e0c88266e"
       }
     },
     {
@@ -25,7 +25,7 @@
       "location" : "https://github.com/Fleuronic/Dewdrop",
       "state" : {
         "branch" : "main",
-        "revision" : "ff49bf5aa2d2e677d0b80b996076c8ffb0836f68"
+        "revision" : "e0aa1d4cba7ba8c384e92a1f6de72fcad3707651"
       }
     },
     {
@@ -34,7 +34,7 @@
       "location" : "https://github.com/Fleuronic/DewdropService",
       "state" : {
         "branch" : "main",
-        "revision" : "b149c9d41663428f93022f52ffa84b309196e7e0"
+        "revision" : "a9a8653cebfdcbfb1f8dab81e643c468266b821d"
       }
     },
     {
