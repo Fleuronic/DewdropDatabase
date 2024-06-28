@@ -12,7 +12,7 @@ extension Group.Identified: Schemata.Model, AnyModel {
 	// MARK: Model
 	public static let schema = Schema(
 		Self.init..."groups",
-		\.title * "title"
+		\.id * "id"
 	)
 }
 

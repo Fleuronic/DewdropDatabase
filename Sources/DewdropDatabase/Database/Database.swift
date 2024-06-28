@@ -5,6 +5,7 @@
 
 import struct Dewdrop.Raindrop
 import struct Dewdrop.Collection
+import struct Dewdrop.Group
 import protocol Schemata.AnyModel
 import protocol Catenoid.Database
 
@@ -20,7 +21,8 @@ public struct Database {
 extension Database: Catenoid.Database {
 	public static let types: [AnyModel.Type] = [
 		Raindrop.Identified.self,
-		Collection.Identified.self
+		Collection.Identified.self,
+		Group.Identified.self
 	]
 
 	public mutating func clear() async throws {

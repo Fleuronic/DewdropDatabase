@@ -13,12 +13,18 @@ extension Collection.Identified: Schemata.Model, AnyModel {
 		Self.init..."collections",
 		\.id * "id",
 		\.title * "title",
-		\.count * "count"
+		\.count * "count",
+		\.group -->? "`group`"
 	)
 }
 
 // MARK: -
 extension Collection.Identified: PersistDB.Model {
+	// MARK: Model
+	public static let relationships: Relationships = [
+		\.group.id: \.group!
+	]
+
 	// MARK: Model
 	public static var defaultOrder: [Ordering<Self>] {
 		[.init(\.id, ascending: false)]

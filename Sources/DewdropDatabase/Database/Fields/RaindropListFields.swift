@@ -8,7 +8,7 @@ import struct Catena.IDFields
 import protocol Catenoid.Fields
 import protocol DewdropService.RaindropFields
 
-public struct RaindropTitleFields: Fields {
+public struct RaindropListFields: Fields {
 	public let id: Raindrop.ID
 	public let title: String
 	public let url: URL
@@ -25,13 +25,13 @@ public struct RaindropTitleFields: Fields {
 }
 
 // MARK
-extension RaindropTitleFields: RaindropFields {
+extension RaindropListFields: RaindropFields {
 	// MARK: Fields
 	public typealias Model = Raindrop.Identified
 }
 
 // MARK: -
-private extension RaindropTitleFields {
+private extension RaindropListFields {
 	init(
 		id: Raindrop.ID,
 		title: String,
