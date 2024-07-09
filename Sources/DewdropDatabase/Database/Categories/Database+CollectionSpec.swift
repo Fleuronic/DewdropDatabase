@@ -1,19 +1,24 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import protocol DewdropService.CollectionSpec
 import protocol Catena.Scoped
 import protocol Catenoid.Database
+import protocol DewdropService.CollectionSpec
 
 extension Database: CollectionSpec {
-	public func listRootCollections() async -> Self.Result<[CollectionListFields]> {
-		await fetch(CollectionListFields.self)
+	public typealias CollectionList = Self.Result<[CollectionListFields]>
+	public typealias CollectionListFields = DewdropDatabase.CollectionListFields
+	public typealias SystemCollectionList = Self.Result<[SystemCollectionListFields]>
+	public typealias SystemCollectionListFields = DewdropDatabase.SystemCollectionListFields
+
+	public func listRootCollections() async -> CollectionList {
+		await fetch()
 	}
 
-	public func listChildCollections() async -> Self.Result<[CollectionListFields]> {
-		await fetch(CollectionListFields.self)
+	public func listChildCollections() async -> CollectionList {
+		await fetch()
 	}
 
-	public func listSystemCollections() async -> Self.Result<[CollectionListFields]> {
-		await fetch(CollectionListFields.self)
+	public func listSystemCollections() async -> SystemCollectionList {
+		await fetch(where: .isSystem)
 	}
 }

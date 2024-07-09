@@ -6,7 +6,10 @@ import protocol Catena.Scoped
 import protocol Catenoid.Database
 
 extension Database: GroupSpec {
-	public func listGroups() async -> Self.Result<[GroupListFields]> {
-		await fetch(GroupListFields.self)
+	public typealias GroupList = Self.Result<[GroupListFields]>
+	public typealias GroupListFields = DewdropDatabase.GroupListFields
+
+	public func listGroups() async -> GroupList {
+		await fetch()
 	}
 }
