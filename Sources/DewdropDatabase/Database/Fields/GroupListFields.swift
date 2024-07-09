@@ -61,7 +61,8 @@ private extension GroupListFields {
 				id: id,
 				title: collectionTitles[index],
 				count: collectionCounts[index],
-				group: nil
+				group: nil,
+				parent: nil
 			)
 		}
 	}

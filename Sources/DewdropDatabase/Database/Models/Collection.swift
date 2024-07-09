@@ -15,7 +15,8 @@ extension Collection.Identified: Schemata.Model {
 		\.id ~ "id",
 		\.value.title ~ "title",
 		\.value.count ~ "count",
-		\.group ~ Optional("parent_group")
+		\.group ~ Optional("parent_group"),
+		\.parent ~ Optional("parent_collection")
 	)
 }
 

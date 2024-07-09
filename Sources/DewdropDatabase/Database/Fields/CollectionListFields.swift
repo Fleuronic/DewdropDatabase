@@ -12,6 +12,7 @@ public struct CollectionListFields: Fields {
 	public let title: String
 	public let count: Int
 	public let group: IDFields<Group.Identified>?
+	public let parent: IDFields<Collection.Identified>?
 
 	// MARK: ModelProjection
 	public static let projection = Projection<Model, Self>(
@@ -19,7 +20,8 @@ public struct CollectionListFields: Fields {
 		\.id,
 		\.value.title,
 		\.value.count,
-		\.group.id
+		\.group.id,
+		\.parent.id
 	)
 }
 
@@ -35,12 +37,14 @@ private extension CollectionListFields {
 		id: Collection.ID,
 		title: String,
 		count: Int,
-		groupID: Group.ID?
+		groupID: Group.ID?,
+		parentID: Collection.ID?
 	) {
 		self.id = id
 		self.title = title
 		self.count = count
 
 		group = groupID.map(IDFields.init)
+		parent = parentID.map(IDFields.init)
 	}
 }
