@@ -12,14 +12,14 @@ public struct RaindropListFields: Fields {
 	public let id: Raindrop.ID
 	public let title: String
 	public let url: URL
-	public let collection: IDFields<Collection.Identified>
+	public let collection: IDFields<Collection.Identified>?
 
 	// MARK: ModelProjection
 	public static let projection = Projection<Model, Self>(
 		Self.init,
 		\.id,
-		\.title,
-		\.url,
+		\.value.title,
+		\.value.url,
 		\.collection.id
 	)
 }
@@ -36,12 +36,12 @@ private extension RaindropListFields {
 		id: Raindrop.ID,
 		title: String,
 		url: URL,
-		collectionID: Collection.ID
+		collectionID: Collection.ID?
 	) {
 		self.id = id
 		self.title = title
 		self.url = url
 
-		collection = .init(id: collectionID)
+		collection = collectionID.map(IDFields.init)
 	}
 }
