@@ -11,10 +11,12 @@ extension Database: CollectionSpec {
 	public typealias SystemCollectionListFields = DewdropDatabase.SystemCollectionListFields
 
 	public func listRootCollections() async -> CollectionList {
+		// TODO
 		await fetch()
 	}
 
 	public func listChildCollections() async -> CollectionList {
+		// TODO
 		await fetch()
 	}
 
