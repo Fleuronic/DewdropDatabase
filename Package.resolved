@@ -1,5 +1,5 @@
 {
-  "originHash" : "761ba2485777078aeb5d8e21143ffb6d063674dc76f0c3b04c111631a0e721f7",
+  "originHash" : "6819c3e23c74ec03ee74e755d5fc76d034d42fa46987ec5de0eeabb41143e275",
   "pins" : [
     {
       "identity" : "catena",
@@ -11,12 +11,30 @@
       }
     },
     {
+      "identity" : "catenoid",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Fleuronic/Catenoid",
+      "state" : {
+        "branch" : "main",
+        "revision" : "025819f960629a4a0305a4635ecfa9ba08bb8c01"
+      }
+    },
+    {
       "identity" : "dewdrop",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Fleuronic/Dewdrop",
       "state" : {
         "branch" : "main",
         "revision" : "7c60d55c87a10029f4bf0f312f319a3db0c3888d"
+      }
+    },
+    {
+      "identity" : "dewdropservice",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Fleuronic/DewdropService",
+      "state" : {
+        "branch" : "main",
+        "revision" : "a673361687f6a786339158b49cf7c12f9123aa54"
       }
     },
     {
@@ -47,12 +65,30 @@
       }
     },
     {
+      "identity" : "persistdb",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Fleuronic/PersistDB",
+      "state" : {
+        "branch" : "master",
+        "revision" : "ab3a0b1d37109afcaec708676812e424ea510b0f"
+      }
+    },
+    {
       "identity" : "reactiveswift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ReactiveCocoa/ReactiveSwift.git",
       "state" : {
         "branch" : "swift-concurrency",
         "revision" : "3d40187c982346352d0adbe6b38e0e3d53fddc95"
+      }
+    },
+    {
+      "identity" : "schemata",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Fleuronic/Schemata",
+      "state" : {
+        "branch" : "master",
+        "revision" : "3405511d0ceae84f3f1c84889ef1e05f9df2e092"
       }
     },
     {
