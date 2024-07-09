@@ -1,6 +1,5 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-
 @preconcurrency import PersistDB
 
 import struct Dewdrop.Raindrop
@@ -20,9 +19,9 @@ public struct Database {
 // MARK: -
 extension Database: Catenoid.Database {
 	public static let types: [AnyModel.Type] = [
-		Raindrop.Identified.self,
+		Group.Identified.self,
 		Collection.Identified.self,
-		Group.Identified.self
+		Raindrop.Identified.self
 	]
 
 	public mutating func clear() async throws {
