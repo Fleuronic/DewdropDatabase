@@ -1,5 +1,5 @@
 {
-  "originHash" : "6819c3e23c74ec03ee74e755d5fc76d034d42fa46987ec5de0eeabb41143e275",
+  "originHash" : "761ba2485777078aeb5d8e21143ffb6d063674dc76f0c3b04c111631a0e721f7",
   "pins" : [
     {
       "identity" : "catena",
@@ -11,30 +11,12 @@
       }
     },
     {
-      "identity" : "catenoid",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Fleuronic/Catenoid",
-      "state" : {
-        "branch" : "main",
-        "revision" : "0585be4e4489558cb51cc5f686d39b1e0c88266e"
-      }
-    },
-    {
       "identity" : "dewdrop",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Fleuronic/Dewdrop",
       "state" : {
         "branch" : "main",
-        "revision" : "e0aa1d4cba7ba8c384e92a1f6de72fcad3707651"
-      }
-    },
-    {
-      "identity" : "dewdropservice",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Fleuronic/DewdropService",
-      "state" : {
-        "branch" : "main",
-        "revision" : "a9a8653cebfdcbfb1f8dab81e643c468266b821d"
+        "revision" : "7c60d55c87a10029f4bf0f312f319a3db0c3888d"
       }
     },
     {
@@ -65,30 +47,12 @@
       }
     },
     {
-      "identity" : "persistdb",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Fleuronic/PersistDB",
-      "state" : {
-        "branch" : "master",
-        "revision" : "fd3eec2673993bee5682d5fade7b2a2654dff4cb"
-      }
-    },
-    {
       "identity" : "reactiveswift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ReactiveCocoa/ReactiveSwift.git",
       "state" : {
         "branch" : "swift-concurrency",
         "revision" : "3d40187c982346352d0adbe6b38e0e3d53fddc95"
-      }
-    },
-    {
-      "identity" : "schemata",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Fleuronic/Schemata",
-      "state" : {
-        "branch" : "master",
-        "revision" : "0f0669c9f8bab8769c2710f5d3a91de95a2533d6"
       }
     },
     {
