@@ -7,6 +7,8 @@ import protocol DewdropService.CollectionSpec
 extension Database: CollectionSpec {
 	public typealias CollectionList = Self.Result<[CollectionListFields]>
 	public typealias CollectionListFields = DewdropDatabase.CollectionListFields
+	public typealias ChildCollectionList = Self.Result<[ChildCollectionListFields]>
+	public typealias ChildCollectionListFields = DewdropDatabase.ChildCollectionListFields
 	public typealias SystemCollectionList = Self.Result<[SystemCollectionListFields]>
 	public typealias SystemCollectionListFields = DewdropDatabase.SystemCollectionListFields
 
@@ -15,9 +17,9 @@ extension Database: CollectionSpec {
 		await fetch()
 	}
 
-	public func listChildCollections() async -> CollectionList {
+	public func listChildCollections() async -> ChildCollectionList {
 		// TODO
-		await fetch()
+		await fetch(where: .isChild)
 	}
 
 	public func listSystemCollections() async -> SystemCollectionList {
