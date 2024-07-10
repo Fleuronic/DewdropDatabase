@@ -10,6 +10,11 @@ extension Database: RaindropSpec {
 	public typealias RaindropList = Self.Result<[RaindropListFields]>
 
 	public func listRaindrops(inCollectionWith id: Collection.ID = .all, searchingFor search: String? = nil/*, sortedBy sort: Raindrop.Sort? = nil*/, onPage page: Int? = nil, listing raindropsPerPage: Int? = nil) async -> RaindropList {
-		await fetch(where: .isInCollection(with: id))
+		switch id {
+		case .all:
+			await fetch()
+		default:
+			await fetch(where: .isInCollection(with: id))
+		}
 	}
 }
