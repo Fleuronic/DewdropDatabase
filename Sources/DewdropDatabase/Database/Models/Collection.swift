@@ -13,10 +13,10 @@ extension Collection.Identified: Schemata.Model {
 	public static let schema = Schema(
 		Self.init ~ "collections",
 		\.id ~ "id",
+		\.parentID ~ "parent_id",
 		\.value.title ~ "title",
 		\.value.count ~ "count",
-		\.group ~ Optional("parent_group"),
-		\.parent ~ Optional("parent_collection")
+		\.group ~ Optional("parent_group")
 	)
 }
 
@@ -24,7 +24,7 @@ extension Collection.Identified: Schemata.Model {
 extension Collection.Identified: PersistDB.Model {
 	// MARK: Model
 	public static var defaultOrder: [Ordering<Self>] {
-		[.init(\.id, ascending: false)]
+		[.init(\.value.title, ascending: true)]
 	}
 }
 
@@ -43,5 +43,9 @@ extension [Collection.Identified]: Schemata.Model, AnyModel {
 extension Predicate<Collection.Identified> {
 	static var isSystem: Self {
 		[.all, .unsorted, .trash].contains(\.id)
+	}
+
+	static var isChild: Self {
+		\.parentID != nil
 	}
 }

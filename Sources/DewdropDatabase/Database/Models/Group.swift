@@ -14,6 +14,7 @@ extension Group.Identified: Schemata.Model {
 	public static let schema = Schema(
 		Self.init ~ "groups",
 		\.id ~ "id",
+		\.value.sortIndex ~ "sort_index",
 		\.collections ~ \.group
 	)
 }
@@ -22,6 +23,9 @@ extension Group.Identified: Schemata.Model {
 extension Group.Identified: PersistDB.Model {
 	// MARK: Model
 	public static var defaultOrder: [Ordering<Self>] {
-		[.init(\.id, ascending: false)]
+		[
+			.init(\.value.sortIndex, ascending: true),
+			.init(\.collections.value.title, ascending: true)
+		]
 	}
 }
