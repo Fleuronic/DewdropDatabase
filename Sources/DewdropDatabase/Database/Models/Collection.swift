@@ -11,12 +11,12 @@ import protocol Catenoid.Model
 extension Collection.Identified: Schemata.Model {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ~ "collections",
-		\.id ~ "id",
-		\.parentID ~ "parent_id",
-		\.value.title ~ "title",
-		\.value.count ~ "count",
-		\.group ~ Optional("parent_group")
+		Self.init..."collections",
+		\.id * "id",
+		\.parentID * "parent_id",
+		\.value.title * "title",
+		\.value.count * "count",
+		\.group -?> "parent_group"
 	)
 }
 
@@ -32,10 +32,10 @@ extension Collection.Identified: PersistDB.Model {
 extension [Collection.Identified]: Schemata.Model, AnyModel {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ~ "collections",
-		\.id ~ "id",
-		\.value.title ~ "title",
-		\.value.count ~ "count"
+		Self.init..."collections",
+		\.id * "id",
+		\.value.title * "title",
+		\.value.count * "count"
 	)
 }
 

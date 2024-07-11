@@ -12,10 +12,10 @@ import protocol Catenoid.Model
 extension Group.Identified: Schemata.Model {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ~ "groups",
-		\.id ~ "id",
-		\.value.sortIndex ~ "sort_index",
-		\.collections ~ \.group
+		Self.init..."groups",
+		\.id * "id",
+		\.value.sortIndex * "sort_index",
+		\.collections <<- \.group
 	)
 }
 

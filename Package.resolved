@@ -7,7 +7,7 @@
       "location" : "https://github.com/Fleuronic/Catena",
       "state" : {
         "branch" : "main",
-        "revision" : "bfa2630ad9c9876e70945dbcef9e56feeba73497"
+        "revision" : "8691d537229afbbe996064ff36eabafe263d6a82"
       }
     },
     {
@@ -16,7 +16,7 @@
       "location" : "https://github.com/Fleuronic/Catenoid",
       "state" : {
         "branch" : "main",
-        "revision" : "025819f960629a4a0305a4635ecfa9ba08bb8c01"
+        "revision" : "3d4b73fe7cf10162cd9d4898f01b8e05dfe631ad"
       }
     },
     {
@@ -25,7 +25,7 @@
       "location" : "https://github.com/Fleuronic/Dewdrop",
       "state" : {
         "branch" : "main",
-        "revision" : "7c60d55c87a10029f4bf0f312f319a3db0c3888d"
+        "revision" : "0c279027f0ae0be2a93966e84d7b8ba6a1a620f8"
       }
     },
     {
@@ -34,7 +34,7 @@
       "location" : "https://github.com/Fleuronic/DewdropService",
       "state" : {
         "branch" : "main",
-        "revision" : "a673361687f6a786339158b49cf7c12f9123aa54"
+        "revision" : "d61b1cf92bb21ff296c527106011aad2b7854d01"
       }
     },
     {
@@ -70,7 +70,7 @@
       "location" : "https://github.com/Fleuronic/PersistDB",
       "state" : {
         "branch" : "master",
-        "revision" : "ab3a0b1d37109afcaec708676812e424ea510b0f"
+        "revision" : "a5a753a1aa68b2f6c45f0708793573d3017a97ea"
       }
     },
     {
@@ -88,7 +88,7 @@
       "location" : "https://github.com/Fleuronic/Schemata",
       "state" : {
         "branch" : "master",
-        "revision" : "3405511d0ceae84f3f1c84889ef1e05f9df2e092"
+        "revision" : "1f145daea4c936429f218623b9ec0c59ce58f9ce"
       }
     },
     {

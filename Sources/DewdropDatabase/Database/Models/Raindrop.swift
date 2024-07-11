@@ -13,11 +13,11 @@ import protocol Catenoid.Model
 extension Raindrop.Identified: Schemata.Model {
 	// MARK: Model
 	public static let schema = Schema(
-		Self.init ~ "raindrops",
-		\.id ~ "id",
-		\.value.title ~ "title",
-		\.value.url ~ "url",
-		\.collection ~ Optional("collection")
+		Self.init..."raindrops",
+		\.id * "id",
+		\.value.title * "title",
+		\.value.url * "url",
+		\.collection -?> "collection"
 	)
 }
 
