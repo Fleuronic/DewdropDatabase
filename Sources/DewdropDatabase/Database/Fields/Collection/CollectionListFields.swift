@@ -12,6 +12,8 @@ public struct CollectionListFields: Fields {
 	public let parentID: Collection.ID?
 	public let title: String
 	public let count: Int
+	public let isShared: Bool
+	public let sortIndex: Int
 	public let group: IDFields<Group.Identified>?
 
 	// MARK: ModelProjection
@@ -21,6 +23,8 @@ public struct CollectionListFields: Fields {
 		\.parentID,
 		\.value.title,
 		\.value.count,
+		\.value.isShared,
+		\.value.sortIndex,
 		\.group.id
 	)
 }
@@ -38,12 +42,16 @@ private extension CollectionListFields {
 		parentID: Collection.ID?,
 		title: String,
 		count: Int,
+		isShared: Bool,
+		sortIndex: Int,
 		groupID: Group.ID?
 	) {
 		self.id = id
 		self.parentID = parentID
 		self.title = title
 		self.count = count
+		self.isShared = isShared
+		self.sortIndex = sortIndex
 
 		group = groupID.map(IDFields.init)
 	}

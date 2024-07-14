@@ -11,6 +11,8 @@ public struct ChildCollectionListFields: Fields {
 	public let parentID: Collection.ID
 	public let title: String
 	public let count: Int
+	public let isShared: Bool
+	public let sortIndex: Int
 
 	// MARK: ModelProjection
 	public static let projection = Projection<Model, Self>(
@@ -18,7 +20,9 @@ public struct ChildCollectionListFields: Fields {
 		\.id,
 		\.parentID,
 		\.value.title,
-		\.value.count
+		\.value.count,
+		\.value.isShared,
+		\.value.sortIndex
 	)
 }
 
@@ -34,11 +38,15 @@ private extension ChildCollectionListFields {
 		id: Collection.ID,
 		parentID: Collection.ID?,
 		title: String,
-		count: Int
+		count: Int,
+		isShared: Bool,
+		sortIndex: Int
 	) {
 		self.id = id
 		self.parentID = parentID!
 		self.title = title
 		self.count = count
+		self.isShared = isShared
+		self.sortIndex = sortIndex
 	}
 }

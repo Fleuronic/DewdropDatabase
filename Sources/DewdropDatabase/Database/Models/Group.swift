@@ -24,8 +24,8 @@ extension Group.Identified: PersistDB.Model {
 	// MARK: Model
 	public static var defaultOrder: [Ordering<Self>] {
 		[
-			.init(\.value.sortIndex, ascending: true),
-			.init(\.collections.value.title, ascending: true)
+			.init(\.value.sortIndex),
+			.init(\.collections.value.sortIndex)
 		]
 	}
 }

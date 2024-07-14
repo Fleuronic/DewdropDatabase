@@ -12,14 +12,16 @@ public struct GroupListFields {
 	public let sortIndex: Int
 	public let collections: [CollectionListFields]
 
-	// MARK: ModelProjection
+	// MARK: ModelProjection.
 	public static let projection = Projection<Model, Self>(
 		Self.init,
 		\.id,
 		\.value.sortIndex,
 		\.collections.id,
 		\.collections.value.title,
-		\.collections.value.count
+		\.collections.value.count,
+		\.collections.value.isShared,
+		\.collections.value.sortIndex
 	)
 }
 
@@ -40,7 +42,9 @@ extension GroupListFields: Fields {
 			sortIndex: sortIndex,
 			collectionIDs: lhs.map(\.id) + rhs.map(\.id),
 			collectionTitles: lhs.map(\.title) + rhs.map(\.title),
-			collectionCounts: lhs.map(\.count) + rhs.map(\.count)
+			collectionCounts: lhs.map(\.count) + rhs.map(\.count),
+			collectionIsSharedFlags: lhs.map(\.isShared) + rhs.map(\.isShared),
+			collectionSortIndices: lhs.map(\.sortIndex) + rhs.map(\.sortIndex)
 		)
 	}
 }
@@ -58,7 +62,9 @@ private extension GroupListFields {
 		sortIndex: Int,
 		collectionIDs: [Collection.ID],
 		collectionTitles: [String],
-		collectionCounts: [Int]
+		collectionCounts: [Int],
+		collectionIsSharedFlags: [Bool],
+		collectionSortIndices: [Int]
 	) {
 		self.sortIndex = sortIndex
 
@@ -69,6 +75,8 @@ private extension GroupListFields {
 				parentID: nil,
 				title: collectionTitles[index],
 				count: collectionCounts[index],
+				isShared: collectionIsSharedFlags[index],
+				sortIndex: collectionSortIndices[index],
 				group: nil
 			)
 		}

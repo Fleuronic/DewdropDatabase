@@ -2,9 +2,10 @@
 
 @preconcurrency import PersistDB
 
-import struct Dewdrop.Raindrop
-import struct Dewdrop.Collection
 import struct Dewdrop.Group
+import struct Dewdrop.Collection
+import struct Dewdrop.Filter
+import struct Dewdrop.Raindrop
 import protocol Schemata.AnyModel
 import protocol Catenoid.Database
 
@@ -21,6 +22,7 @@ extension Database: Catenoid.Database {
 	public static let types: [AnyModel.Type] = [
 		Group.Identified.self,
 		Collection.Identified.self,
+		Filter.Identified.self,
 		Raindrop.Identified.self
 	]
 

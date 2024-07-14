@@ -12,10 +12,12 @@ extension Collection.Identified: Schemata.Model {
 	// MARK: Model
 	public static let schema = Schema(
 		Self.init..."collections",
-		\.id * "id",
+		\Self.id * "id",
 		\.parentID * "parent_id",
 		\.value.title * "title",
 		\.value.count * "count",
+		\.value.isShared * "shared",
+		\.value.sortIndex * "sort_index",
 		\.group -?> "parent_group"
 	)
 }
@@ -24,25 +26,41 @@ extension Collection.Identified: Schemata.Model {
 extension Collection.Identified: PersistDB.Model {
 	// MARK: Model
 	public static var defaultOrder: [Ordering<Self>] {
-		[.init(\.value.title, ascending: true)]
+		[
+			.init(\.value.sortIndex),
+			.init(\.id, ascending: false)
+		]
 	}
 }
 
 // MARK: -
 extension [Collection.Identified]: Schemata.Model, AnyModel {
 	// MARK: Model
-	public static let schema = Schema(
+	public static var schema = Schema(
 		Self.init..."collections",
-		\.id * "id",
+		\Self.id * "id",
 		\.value.title * "title",
-		\.value.count * "count"
+		\.value.count * "count",
+		\.value.isShared * "shared",
+		\.value.sortIndex * "sort_index"
 	)
+}
+
+// MARK: -
+public extension Predicate<Collection.Identified> {
+	static var isGrouped: Self {
+		!.isSystem
+	}
 }
 
 // MARK: -
 extension Predicate<Collection.Identified> {
 	static var isSystem: Self {
 		[.all, .unsorted, .trash].contains(\.id)
+	}
+
+	static var isRoot: Self {
+		\.parentID == nil
 	}
 
 	static var isChild: Self {
