@@ -11,16 +11,26 @@ import protocol Catenoid.Model
 
 extension Collection.Identified: Schemata.Model {
 	// MARK: Model
-	public static let schema = Schema(
-		Self.init..."collections",
-		\Self.id * "id",
-		\.parentID * "parent_id",
-		\.value.title * "title",
-		\.value.count * "count",
-		\.value.isShared * "shared",
-		\.value.sortIndex * "sort_index",
-		\.group -?> "parent_group"
-	)
+	public static var schema: Schema<Self> {
+		let id = \Self.id * "id"
+		let parentID = \Self.parentID * "parent_id"
+		let title = \Self.value.title * "title"
+		let count = \Self.value.count * "count"
+		let isShared = \Self.value.isShared * "shared"
+		let sortIndex = \Self.value.sortIndex * "sort_index"
+		let parentGroup = \Self.group -?> "parent_group"
+
+		return .init(
+			Self.init..."collections",
+			id,
+			parentID,
+			title,
+			count,
+			isShared,
+			sortIndex,
+			parentGroup
+		)
+	}
 }
 
 // MARK: -
@@ -37,14 +47,22 @@ extension Collection.Identified: PersistDB.Model {
 // MARK: -
 extension [Collection.Identified]: Schemata.Model, @retroactive AnyModel {
 	// MARK: Model
-	public static let schema = Schema(
-		Self.init..."collections",
-		\Self.id * "id",
-		\.value.title * "title",
-		\.value.count * "count",
-		\.value.isShared * "shared",
-		\.value.sortIndex * "sort_index"
-	)
+	public static var schema: Schema<Self> {
+		let id = \Self.id * "id"
+		let title = \Self.value.title * "title"
+		let count: Property<Self, [Int]> = \Self.value.count * "count"
+		let isShared = \Self.value.isShared * "shared"
+		let sortIndex = \Self.value.sortIndex * "sort_index"
+
+		return .init(
+			Self.init..."collections",
+			id,
+			title,
+			count,
+			isShared,
+			sortIndex
+		)
+	}
 }
 
 // MARK: -
