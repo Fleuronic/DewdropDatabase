@@ -1,7 +1,8 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
+import Schemata
+
 import struct Dewdrop.Filter
-import struct Schemata.Projection
 import struct Catena.IDFields
 import protocol Catenoid.Fields
 import protocol DewdropService.FilterFields

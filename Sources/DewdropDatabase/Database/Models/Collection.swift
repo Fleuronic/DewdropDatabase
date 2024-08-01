@@ -1,7 +1,8 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
 import PersistDB
+import Identity
+import Schemata
 
 import struct Dewdrop.Collection
 import struct Dewdrop.Group
@@ -34,9 +35,9 @@ extension Collection.Identified: PersistDB.Model {
 }
 
 // MARK: -
-extension [Collection.Identified]: Schemata.Model, AnyModel {
+extension [Collection.Identified]: Schemata.Model, @retroactive AnyModel {
 	// MARK: Model
-	public static var schema = Schema(
+	public static let schema = Schema(
 		Self.init..."collections",
 		\Self.id * "id",
 		\.value.title * "title",

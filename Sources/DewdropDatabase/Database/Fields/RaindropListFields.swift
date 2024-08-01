@@ -1,9 +1,10 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
+import Schemata
+
 import struct Dewdrop.Raindrop
 import struct Dewdrop.Collection
 import struct Foundation.URL
-import struct Schemata.Projection
 import struct Catena.IDFields
 import protocol Catenoid.Fields
 import protocol DewdropService.RaindropFields
