@@ -1,7 +1,6 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
 import Schemata
-
 import PersistDB
 
 import struct Dewdrop.Raindrop
@@ -31,7 +30,7 @@ extension Raindrop.Identified: PersistDB.Model {
 }
 
 // MARK: -
-extension Predicate<IdentifiedRaindrop> {
+extension Predicate<Raindrop.Identified> {
 	static func isInCollection(with id: Collection.ID) -> Self {
 		\.collection.id == id
 	}
