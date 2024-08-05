@@ -4,6 +4,7 @@ import PersistDB
 import Identity
 import Schemata
 
+import struct Dewdrop.Raindrop
 import struct Dewdrop.Collection
 import struct Dewdrop.Group
 import struct DewdropService.IdentifiedCollection
@@ -37,10 +38,7 @@ extension Collection.Identified: Schemata.Model {
 extension Collection.Identified: PersistDB.Model {
 	// MARK: Model
 	public static var defaultOrder: [Ordering<Self>] {
-		[
-			.init(\.value.sortIndex),
-			.init(\.id, ascending: false)
-		]
+		[.init(\.value.sortIndex)]
 	}
 }
 
@@ -84,5 +82,15 @@ extension Predicate<Collection.Identified> {
 
 	static var isChild: Self {
 		\.parentID != nil
+	}
+}
+
+// MARK: -
+public extension Collection.ID {
+	var containsRaindrop: Predicate<Raindrop.Identified> {
+		switch self {
+		case .all: !.isInCollection(with: .trash)
+		default: .isInCollection(with: self)
+		}
 	}
 }
