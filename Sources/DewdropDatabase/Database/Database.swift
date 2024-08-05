@@ -1,6 +1,6 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-@preconcurrency import PersistDB
+import PersistDB
 
 import struct Dewdrop.Group
 import struct Dewdrop.Collection
@@ -9,7 +9,7 @@ import struct Dewdrop.Raindrop
 import protocol Schemata.AnyModel
 import protocol Catenoid.Database
 
-public struct Database {
+public struct Database: @unchecked Sendable {
 	public private(set) var store: Store<ReadWrite>
 
 	public init() async {
