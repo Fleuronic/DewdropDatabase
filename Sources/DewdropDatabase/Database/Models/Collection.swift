@@ -64,13 +64,6 @@ extension [Collection.Identified]: Schemata.Model, @retroactive AnyModel {
 }
 
 // MARK: -
-public extension Predicate<Collection.Identified> {
-	static var isGrouped: Self {
-		!.isSystem
-	}
-}
-
-// MARK: -
 extension Predicate<Collection.Identified> {
 	static var isSystem: Self {
 		[.all, .unsorted, .trash].contains(\.id)
@@ -82,15 +75,5 @@ extension Predicate<Collection.Identified> {
 
 	static var isChild: Self {
 		\.parentID != nil
-	}
-}
-
-// MARK: -
-public extension Collection.ID {
-	var containsRaindrop: Predicate<Raindrop.Identified> {
-		switch self {
-		case .all: !.isInCollection(with: .trash)
-		default: .isInCollection(with: self)
-		}
 	}
 }
