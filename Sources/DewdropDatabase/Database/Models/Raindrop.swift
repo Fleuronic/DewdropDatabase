@@ -32,6 +32,9 @@ extension Raindrop.Identified: PersistDB.Model {
 // MARK: -
 extension Predicate<Raindrop.Identified> {
 	static func isInCollection(with id: Collection.ID) -> Self {
-		\.collection.id == id
+		switch id {
+		case .all: !.isInCollection(with: .trash)
+		default: \.collection.id == id
+		}
 	}
 }
