@@ -12,17 +12,27 @@ import protocol Catenoid.Model
 
 extension Collection.Identified: Schemata.Model {
 	// MARK: Model
+	public enum Path: String {
+		case id
+		case parentID = "parent_id"
+		case title
+		case count
+		case isShared = "shared"
+		case sortIndex = "sort_index"
+		case group = "parent_group"
+	}
+
 	public static var schema: Schema<Self> {
-		let id = \Self.id * "id"
-		let parentID = \Self.parentID * "parent_id"
-		let title = \Self.value.title * "title"
-		let count = \Self.value.count * "count"
-		let isShared = \Self.value.isShared * "shared"
-		let sortIndex = \Self.value.sortIndex * "sort_index"
-		let parentGroup = \Self.group -?> "parent_group"
+		let id = \Self.id * .id
+		let parentID = \Self.parentID * .parentID
+		let title = \Self.value.title * .title
+		let count = \Self.value.count * .count
+		let isShared = \Self.value.isShared * .isShared
+		let sortIndex = \Self.value.sortIndex * .sortIndex
+		let parentGroup = \Self.group -?> .group
 
 		return .init(
-			Self.init..."collections",
+			Self.init,
 			id,
 			parentID,
 			title,
@@ -32,6 +42,8 @@ extension Collection.Identified: Schemata.Model {
 			parentGroup
 		)
 	}
+
+	public static let schemaName = "collections"
 }
 
 // MARK: -
@@ -46,15 +58,17 @@ extension Collection.Identified: PersistDB.Model {
 extension [Collection.Identified]: Schemata.Model, @retroactive AnyModel {
 	// MARK: Model
 	public static var schema: Schema<Self> {
-		let id = \Self.id * "id"
-		let title = \Self.value.title * "title"
-		let count: Property<Self, [Int]> = \Self.value.count * "count"
-		let isShared = \Self.value.isShared * "shared"
-		let sortIndex = \Self.value.sortIndex * "sort_index"
+		let id = \Self.id * .id
+		let parentID = \Self.parentID * .parentID
+		let title = \Self.value.title * .title
+		let count: Property<Self, [Int]> = \Self.value.count * .count
+		let isShared = \Self.value.isShared * .isShared
+		let sortIndex = \Self.value.sortIndex * .sortIndex
 
 		return .init(
-			Self.init..."collections",
+			Self.init,
 			id,
+			parentID,
 			title,
 			count,
 			isShared,
