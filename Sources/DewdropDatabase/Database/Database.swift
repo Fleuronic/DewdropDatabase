@@ -6,10 +6,13 @@ import struct Dewdrop.Group
 import struct Dewdrop.Collection
 import struct Dewdrop.Filter
 import struct Dewdrop.Raindrop
+import protocol DewdropService.RaindropFields
 import protocol Schemata.AnyModel
 import protocol Catenoid.Database
 
-public struct Database: @unchecked Sendable {
+public struct Database<
+	RaindropListFields: RaindropFields
+>: @unchecked Sendable {
 	public private(set) var store: Store<ReadWrite>
 
 	public init() async {
@@ -19,12 +22,14 @@ public struct Database: @unchecked Sendable {
 
 // MARK: -
 extension Database: Catenoid.Database {
-	public static let types: [AnyModel.Type] = [
-		Group.Identified.self,
-		Collection.Identified.self,
-		Filter.Identified.self,
-		Raindrop.Identified.self
-	]
+	public static var types: [AnyModel.Type] {
+		[
+			Group.Identified.self,
+			Collection.Identified.self,
+			Filter.Identified.self,
+			Raindrop.Identified.self
+		]
+	}
 
 	public mutating func clear() async throws {
 		try Store.destroy()
