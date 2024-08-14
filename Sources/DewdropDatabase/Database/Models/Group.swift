@@ -13,12 +13,14 @@ extension Group.Identified: Schemata.Model {
 	// MARK: Model
 	public enum Path: String {
 		case id
+		case isHidden = "hidden"
 		case sortIndex = "sort_index"
 	}
 
 	public static let schema = Schema(
 		Self.init,
 		\.id * .id,
+		\.value.isHidden * .isHidden,
 		\.value.sortIndex * .sortIndex,
 		\.collections <<- \.group
 	)
