@@ -15,17 +15,17 @@ import protocol Catenoid.Database
 import protocol Catenoid.Fields
 
 public struct Database<
-	GroupListFields: GroupFields & Fields,
+	RaindropListFields: RaindropFields & Fields,
 	CollectionListFields: CollectionFields & Fields,
 	ChildCollectionListFields: CollectionFields & Fields,
 	SystemCollectionListFields: CollectionFields & Fields,
-	FilterListFields: FilterFields & Fields,
-	RaindropListFields: RaindropFields & Fields
+	GroupListFields: GroupFields & Fields,
+	FilterListFields: FilterFields & Fields
 >: @unchecked Sendable {
 	public private(set) var store: Store<ReadWrite>
 
 	public init(
-		
+		// TODO: Default fields
 	) async {
 		store = try! await Self.createStore()
 	}
@@ -35,10 +35,10 @@ public struct Database<
 extension Database: Catenoid.Database {
 	public static var types: [AnyModel.Type] {
 		[
-			Group.Identified.self,
+			Raindrop.Identified.self,
 			Collection.Identified.self,
+			Group.Identified.self,
 			Filter.Identified.self,
-			Raindrop.Identified.self
 		]
 	}
 
