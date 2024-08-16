@@ -6,6 +6,7 @@ import struct Dewdrop.Group
 import struct Dewdrop.Collection
 import struct Dewdrop.Filter
 import struct Dewdrop.Raindrop
+import struct Dewdrop.Highlight
 import protocol DewdropService.GroupFields
 import protocol DewdropService.CollectionFields
 import protocol DewdropService.FilterFields
@@ -39,6 +40,7 @@ extension Database: Catenoid.Database {
 			Collection.Identified.self,
 			Group.Identified.self,
 			Filter.Identified.self,
+			Highlight.Identified.self
 		]
 	}
 

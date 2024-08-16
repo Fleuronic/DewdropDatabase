@@ -32,6 +32,7 @@ extension Raindrop.Identified: Schemata.Model {
 		let favorite = \Self.value.isFavorite * .isFavorite
 		let broken = \Self.value.isBroken * .isBroken
 		let collection = \Self.collection -?> .collection
+//		let highlights = \Self.highlights <<- \.raindrop
 
 		return .init(
 			Self.init,
@@ -42,6 +43,7 @@ extension Raindrop.Identified: Schemata.Model {
 			favorite,
 			broken,
 			collection
+//			highlights
 		)
 	}
 

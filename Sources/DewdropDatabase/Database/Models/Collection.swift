@@ -55,7 +55,7 @@ extension Collection.Identified: PersistDB.Model {
 }
 
 // MARK: -
-extension [Collection.Identified]: Schemata.Model, @retroactive AnyModel {
+extension [Collection.Identified] {
 	// MARK: Model
 	public static var schema: Schema<Self> {
 		let id = \Self.id * .id
