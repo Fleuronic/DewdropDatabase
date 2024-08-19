@@ -32,7 +32,6 @@ extension Raindrop.Identified: Schemata.Model {
 		let favorite = \Self.value.isFavorite * .isFavorite
 		let broken = \Self.value.isBroken * .isBroken
 		let collection = \Self.collection -?> .collection
-//		let highlights = \Self.highlights <<- \.raindrop
 
 		return .init(
 			Self.init,
@@ -43,7 +42,6 @@ extension Raindrop.Identified: Schemata.Model {
 			favorite,
 			broken,
 			collection
-//			highlights
 		)
 	}
 
@@ -60,15 +58,15 @@ extension Raindrop.Identified: PersistDB.Model {
 
 // MARK: -
 extension Predicate<Raindrop.Identified> {
-	static func isInCollection(with id: Collection.ID, searchingFor search: String? = nil) -> Self {
+	static func isInCollection(with id: Collection.ID, searchingFor query: String? = nil) -> Self {
 		let predicate: Self = switch id {
 		case .all: !.isInCollection(with: .trash)
 		default: \.collection.id == id
 		}
 
-		let searchPredicate: Self? = if let search {
-			if let name = Filter.ID.Name(rawValue: search) {
-				switch name {
+		let searchPredicate: Self? = if let query {
+			if let filterName = Filter.filterName(forQuery: query) {
+				switch filterName {
 				case .favorited:
 					\.value.isFavorite == true
 				case .broken:
@@ -76,7 +74,7 @@ extension Predicate<Raindrop.Identified> {
 				default:
 					nil
 				}
-			} else if let itemType = search.components(separatedBy: ":").last.flatMap(ItemType.init) {
+			} else if let itemType = Filter.itemType(forQuery: query) {
 				\.value.itemType == itemType
 			} else {
 				nil

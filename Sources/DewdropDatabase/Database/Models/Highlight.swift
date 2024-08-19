@@ -1,8 +1,10 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
 import Schemata
+import PersistDB
 
 import struct Dewdrop.Highlight
+import struct Dewdrop.Raindrop
 import struct DewdropService.IdentifiedHighlight
 import struct PersistDB.Ordering
 import protocol PersistDB.Model
@@ -46,5 +48,12 @@ extension [Highlight.Identified] {
 			id,
 			text
 		)
+	}
+}
+
+// MARK: -
+extension Predicate<Highlight.Identified> {
+	static func isInRaindrop(with id: Raindrop.ID) -> Self {
+		\.raindrop.id == id
 	}
 }

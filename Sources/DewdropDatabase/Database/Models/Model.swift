@@ -15,8 +15,6 @@ extension Array: Model where Element: Model {
 	public static var schema: Schema<Self> {
 		if let collections = self as? [Collection.Identified].Type {
 			return collections.schema as! Schema<Self>
-		} else if let highlights = self as? [Highlight.Identified].Type {
-			return highlights.schema as! Schema<Self>
 		}
 
 		fatalError()
