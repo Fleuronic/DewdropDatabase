@@ -10,6 +10,7 @@ import struct Dewdrop.Highlight
 import protocol DewdropService.GroupFields
 import protocol DewdropService.CollectionFields
 import protocol DewdropService.FilterFields
+import protocol DewdropService.HighlightFields
 import protocol DewdropService.RaindropFields
 import protocol Schemata.AnyModel
 import protocol Catenoid.Database
@@ -21,7 +22,8 @@ public struct Database<
 	ChildCollectionListFields: CollectionFields & Fields,
 	SystemCollectionListFields: CollectionFields & Fields,
 	GroupListFields: GroupFields & Fields,
-	FilterListFields: FilterFields & Fields
+	FilterListFields: FilterFields & Fields,
+	HighlightListFields: HighlightFields & Fields
 >: @unchecked Sendable {
 	public private(set) var store: Store<ReadWrite>
 
