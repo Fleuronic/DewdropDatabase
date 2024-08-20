@@ -64,13 +64,15 @@ extension Predicate<Raindrop.Identified> {
 		default: \.collection.id == id
 		}
 
-		let searchPredicate: Self? = if let query {
+		let searchPredicate: Self? = query.flatMap { query in
 			if let filterName = Filter.filterName(forQuery: query) {
 				switch filterName {
 				case .favorited:
 					\.value.isFavorite == true
 				case .broken:
 					\.value.isBroken == true
+				case .untagged:
+					nil
 				default:
 					nil
 				}
@@ -79,8 +81,6 @@ extension Predicate<Raindrop.Identified> {
 			} else {
 				nil
 			}
-		} else {
-			nil
 		}
 
 		return searchPredicate.map { predicate && $0 } ?? predicate
