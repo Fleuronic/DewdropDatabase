@@ -28,6 +28,6 @@ extension Tag.Identified: Schemata.Model {
 extension Tag.Identified: PersistDB.Model {
 	// MARK: Model
 	public static var defaultOrder: [Ordering<Self>] {
-		[.init(\.id, ascending: false)]
+		[.init(\.value.count, ascending: false)]
 	}
 }
