@@ -1,29 +1,34 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
+import Catena
 import PersistDB
 
 import struct Dewdrop.Group
 import struct Dewdrop.Collection
 import struct Dewdrop.Filter
 import struct Dewdrop.Raindrop
+import struct Dewdrop.Tag
 import struct Dewdrop.Highlight
+import struct DewdropService.Tagging
+import protocol DewdropService.RaindropFields
 import protocol DewdropService.GroupFields
 import protocol DewdropService.CollectionFields
 import protocol DewdropService.FilterFields
+import protocol DewdropService.TagFields
 import protocol DewdropService.HighlightFields
-import protocol DewdropService.RaindropFields
+import protocol Catenoid.Fields
 import protocol Schemata.AnyModel
 import protocol Catenoid.Database
-import protocol Catenoid.Fields
 
 public struct Database<
-	RaindropListFields: RaindropFields & Fields,
-	CollectionListFields: CollectionFields & Fields,
-	ChildCollectionListFields: CollectionFields & Fields,
-	SystemCollectionListFields: CollectionFields & Fields,
-	GroupListFields: GroupFields & Fields,
-	FilterListFields: FilterFields & Fields,
-	HighlightListFields: HighlightFields & Fields
+	RaindropListFields: RaindropFields & Fields<Raindrop.Identified>,
+	CollectionListFields: CollectionFields & Fields<Collection.Identified>,
+	ChildCollectionListFields: CollectionFields & Fields<Collection.Identified>,
+	SystemCollectionListFields: CollectionFields & Fields<Collection.Identified>,
+	GroupListFields: GroupFields & Fields<Group.Identified>,
+	FilterListFields: FilterFields & Fields<Filter.Identified>,
+	TagListFields: TagFields & Fields<Tag.Identified>,
+	HighlightListFields: HighlightFields & Fields<Highlight.Identified>
 >: @unchecked Sendable {
 	public private(set) var store: Store<ReadWrite>
 
@@ -42,7 +47,9 @@ extension Database: Catenoid.Database {
 			Collection.Identified.self,
 			Group.Identified.self,
 			Filter.Identified.self,
-			Highlight.Identified.self
+			Tag.Identified.self,
+			Highlight.Identified.self,
+			Tagging.self
 		]
 	}
 

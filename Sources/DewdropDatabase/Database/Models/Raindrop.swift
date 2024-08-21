@@ -71,8 +71,6 @@ extension Predicate<Raindrop.Identified> {
 					\.value.isFavorite == true
 				case .broken:
 					\.value.isBroken == true
-				case .untagged:
-					nil
 				default:
 					nil
 				}
