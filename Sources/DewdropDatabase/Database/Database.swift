@@ -53,8 +53,13 @@ extension Database: Catenoid.Database {
 		]
 	}
 
-	public mutating func clear() async throws {
-		try Store.destroy()
-		store = try await Self.createStore()
+	public func clear() async {
+		store.delete(Delete<Raindrop.Identified>(nil))
+		store.delete(Delete<Collection.Identified>(nil))
+		store.delete(Delete<Group.Identified>(nil))
+		store.delete(Delete<Filter.Identified>(nil))
+		store.delete(Delete<Tag.Identified>(nil))
+		store.delete(Delete<Highlight.Identified>(nil))
+		store.delete(Delete<Tagging>(nil))
 	}
 }
