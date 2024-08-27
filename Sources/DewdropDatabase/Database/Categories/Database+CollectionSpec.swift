@@ -5,6 +5,9 @@ import protocol Catena.Scoped
 import protocol Catenoid.Database
 
 extension Database: CollectionSpec {
+	// TODO: Remove
+	public typealias RootCollectionListFields = CollectionListFields
+
 	public func listRootCollections() async -> Self.Result<[CollectionListFields]> {
 		await fetch(where: .isRoot)
 	}
