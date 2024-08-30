@@ -22,6 +22,7 @@ import protocol Catenoid.Database
 
 public struct Database<
 	RaindropListFields: RaindropFields & Fields<Raindrop.Identified>,
+	RaindropCreationFields: RaindropFields & Fields<Raindrop.Identified>,
 	CollectionListFields: CollectionFields & Fields<Collection.Identified>,
 	ChildCollectionListFields: CollectionFields & Fields<Collection.Identified>,
 	SystemCollectionListFields: CollectionFields & Fields<Collection.Identified>,
