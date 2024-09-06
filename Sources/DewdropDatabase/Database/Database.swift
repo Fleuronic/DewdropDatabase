@@ -9,6 +9,7 @@ import struct Dewdrop.Filter
 import struct Dewdrop.Raindrop
 import struct Dewdrop.Tag
 import struct Dewdrop.Highlight
+import struct Dewdrop.User
 import struct DewdropService.Tagging
 import protocol DewdropService.RaindropFields
 import protocol DewdropService.GroupFields
@@ -50,6 +51,7 @@ extension Database: Catenoid.Database {
 			Filter.Identified.self,
 			Tag.Identified.self,
 			Highlight.Identified.self,
+			User.Identified.self,
 			Tagging.self
 		]
 	}
