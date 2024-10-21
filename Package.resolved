@@ -1,5 +1,4 @@
 {
-  "originHash" : "7f8c45cdb795e923f83eed0273227fd5a47f5d40ef22193429abbefba4318b79",
   "pins" : [
     {
       "identity" : "catena",
@@ -7,7 +6,7 @@
       "location" : "https://github.com/Fleuronic/Catena",
       "state" : {
         "branch" : "main",
-        "revision" : "00c17a0c7c6f90f76407eb7aa5a375ffa2abec12"
+        "revision" : "0886450dc5cc4d2607cd63ce95772e6fb29d7a9f"
       }
     },
     {
@@ -16,7 +15,7 @@
       "location" : "https://github.com/Fleuronic/Catenoid",
       "state" : {
         "branch" : "main",
-        "revision" : "c8c3c713226237f0b6b2c478eebc307cbc5afe98"
+        "revision" : "5c428d639d867c7fb493723affe4f11bca73c435"
       }
     },
     {
@@ -25,7 +24,7 @@
       "location" : "https://github.com/Fleuronic/Dewdrop",
       "state" : {
         "branch" : "main",
-        "revision" : "e605dba60407ba9d9443ca6c14adf7f4d5dcbc9f"
+        "revision" : "be659e34d91ee1081801f0983881364e8842800f"
       }
     },
     {
@@ -34,7 +33,7 @@
       "location" : "https://github.com/Fleuronic/DewdropService",
       "state" : {
         "branch" : "main",
-        "revision" : "c698701882e4c16502061a746e8b601405cc8bf0"
+        "revision" : "b3b7ab0e029093518434b55f475fac25ebf9d146"
       }
     },
     {
@@ -52,7 +51,7 @@
       "location" : "https://github.com/Fleuronic/Identity",
       "state" : {
         "branch" : "master",
-        "revision" : "a0a5d99bc543487e3785eb5700e277a2f1fcf4b5"
+        "revision" : "511c8584d7c0bed3da607156a4d643fd44ca4368"
       }
     },
     {
@@ -61,7 +60,7 @@
       "location" : "https://github.com/Fleuronic/PersistDB",
       "state" : {
         "branch" : "master",
-        "revision" : "cbd5d1c0c98fbc899ed8f069f7e3ff3ecc769e4f"
+        "revision" : "0d57b231aeef08f015a54e021e46d74b19db761e"
       }
     },
     {
@@ -69,8 +68,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Fleuronic/ReactiveSwift",
       "state" : {
-        "branch" : "master",
-        "revision" : "2dc9b62ee7a2aff72bab49f5f3f6a71fa09d1537"
+        "branch" : "main",
+        "revision" : "db54c7d9b7cf3ed89962eac4b28a4c05df855956"
       }
     },
     {
@@ -79,7 +78,7 @@
       "location" : "https://github.com/Fleuronic/Schemata",
       "state" : {
         "branch" : "master",
-        "revision" : "12fd8741aa860f6eb61220ca5a3c70e521f23936"
+        "revision" : "d50bff691be79b0334e17b394de7dc13528d3944"
       }
     },
     {
@@ -110,5 +109,5 @@
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }
