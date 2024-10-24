@@ -15,7 +15,7 @@
       "location" : "https://github.com/Fleuronic/Catenoid",
       "state" : {
         "branch" : "main",
-        "revision" : "5c428d639d867c7fb493723affe4f11bca73c435"
+        "revision" : "d861ffc4a627a2426f0beddebf3dd3c53adbe64f"
       }
     },
     {
@@ -24,7 +24,7 @@
       "location" : "https://github.com/Fleuronic/Dewdrop",
       "state" : {
         "branch" : "main",
-        "revision" : "be659e34d91ee1081801f0983881364e8842800f"
+        "revision" : "19de3437dc9eb324346b0e93ccd843d9a3213da8"
       }
     },
     {
@@ -33,7 +33,7 @@
       "location" : "https://github.com/Fleuronic/DewdropService",
       "state" : {
         "branch" : "main",
-        "revision" : "b3b7ab0e029093518434b55f475fac25ebf9d146"
+        "revision" : "89ae3c3c4a6031de3a45c4e38330ada6aa254b2f"
       }
     },
     {
@@ -60,7 +60,7 @@
       "location" : "https://github.com/Fleuronic/PersistDB",
       "state" : {
         "branch" : "master",
-        "revision" : "0d57b231aeef08f015a54e021e46d74b19db761e"
+        "revision" : "c9541a0b705720de5b7acf245b4b434dd4f53320"
       }
     },
     {
@@ -69,7 +69,7 @@
       "location" : "https://github.com/Fleuronic/ReactiveSwift",
       "state" : {
         "branch" : "main",
-        "revision" : "db54c7d9b7cf3ed89962eac4b28a4c05df855956"
+        "revision" : "7b922072ceeb867e2550d4a76558763b16daa6a6"
       }
     },
     {
