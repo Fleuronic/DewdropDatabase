@@ -1,9 +1,9 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import struct Dewdrop.Collection
-import protocol DewdropService.CollectionSpec
-import protocol Catena.Scoped
-import protocol Catenoid.Database
+public import struct Dewdrop.Collection
+public import protocol DewdropService.CollectionSpec
+public import protocol Catena.Scoped
+public import protocol Catenoid.Database
 
 extension Database: CollectionSpec {
 	// TODO: Remove

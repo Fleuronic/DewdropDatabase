@@ -1,25 +1,24 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Catena
-import PersistDB
+public import PersistDB
 
-import struct Dewdrop.Group
-import struct Dewdrop.Collection
-import struct Dewdrop.Filter
-import struct Dewdrop.Raindrop
-import struct Dewdrop.Tag
-import struct Dewdrop.Highlight
-import struct Dewdrop.User
-import struct DewdropService.Tagging
-import protocol DewdropService.RaindropFields
-import protocol DewdropService.GroupFields
-import protocol DewdropService.CollectionFields
-import protocol DewdropService.FilterFields
-import protocol DewdropService.TagFields
-import protocol DewdropService.HighlightFields
-import protocol Catenoid.Fields
-import protocol Schemata.AnyModel
-import protocol Catenoid.Database
+public import struct Dewdrop.Group
+public import struct Dewdrop.Collection
+public import struct Dewdrop.Filter
+public import struct Dewdrop.Raindrop
+public import struct Dewdrop.Tag
+public import struct Dewdrop.Highlight
+public import struct Dewdrop.User
+public import struct DewdropService.Tagging
+public import protocol DewdropService.RaindropFields
+public import protocol DewdropService.GroupFields
+public import protocol DewdropService.CollectionFields
+public import protocol DewdropService.FilterFields
+public import protocol DewdropService.TagFields
+public import protocol DewdropService.HighlightFields
+public import protocol Catenoid.Fields
+public import protocol Schemata.AnyModel
+public import protocol Catenoid.Database
 
 public struct Database<
 	RaindropListFields: RaindropFields & Fields<Raindrop.Identified>,
@@ -43,7 +42,7 @@ public struct Database<
 
 // MARK: -
 extension Database: Catenoid.Database {
-	public static var types: [AnyModel.Type] {
+	public static var types: [any AnyModel.Type] {
 		[
 			Raindrop.Identified.self,
 			Collection.Identified.self,

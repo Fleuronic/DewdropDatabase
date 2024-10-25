@@ -1,16 +1,13 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
-import PersistDB
+public import Schemata
+public import PersistDB
 
-import enum Dewdrop.ItemType
-import struct Dewdrop.Raindrop
-import struct Dewdrop.Collection
-import struct Dewdrop.Filter
-import struct DewdropService.IdentifiedRaindrop
-import struct PersistDB.Ordering
-import protocol PersistDB.Model
-import protocol Catenoid.Model
+public import struct Dewdrop.Raindrop
+public import struct Dewdrop.Collection
+public import struct Dewdrop.Filter
+public import struct DewdropService.IdentifiedRaindrop
+public import protocol Catenoid.Model
 
 extension Raindrop.Identified: Schemata.Model {
 	// MARK: Model

@@ -1,9 +1,8 @@
-import Schemata
+// Copyright © Fleuronic LLC. All rights reserved.
 
-import struct Dewdrop.Collection
-import struct Dewdrop.Highlight
-import struct DewdropService.IdentifiedCollection
-import struct DewdropService.IdentifiedHighlight
+public import Schemata
+
+public import struct Dewdrop.Collection
 
 extension Array: Schemata.AnyModel where Element: Model {
 	public static var anySchema: Schemata.AnySchema {

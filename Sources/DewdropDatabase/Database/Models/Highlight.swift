@@ -1,14 +1,12 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
-import PersistDB
+public import Schemata
+public import PersistDB
 
-import struct Dewdrop.Highlight
-import struct Dewdrop.Raindrop
-import struct DewdropService.IdentifiedHighlight
-import struct PersistDB.Ordering
-import protocol PersistDB.Model
-import protocol Catenoid.Model
+public import struct Dewdrop.Highlight
+public import struct Dewdrop.Raindrop
+public import struct DewdropService.IdentifiedHighlight
+public import protocol Catenoid.Model
 
 extension Highlight.Identified: Schemata.Model {
 	// MARK: Model
