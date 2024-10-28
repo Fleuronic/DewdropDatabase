@@ -1,8 +1,8 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-public import Schemata
+import Schemata
 
-public import struct Dewdrop.Collection
+import struct Dewdrop.Collection
 
 extension Array: Schemata.AnyModel where Element: Model {
 	public static var anySchema: Schemata.AnySchema {
