@@ -2,10 +2,10 @@
 
 import PersistDB
 
-import struct Dewdrop.Group
-import struct Dewdrop.Collection
-import struct Dewdrop.Filter
 import struct Dewdrop.Raindrop
+import struct Dewdrop.Collection
+import struct Dewdrop.Group
+import struct Dewdrop.Filter
 import struct Dewdrop.Tag
 import struct Dewdrop.Highlight
 import struct Dewdrop.User
