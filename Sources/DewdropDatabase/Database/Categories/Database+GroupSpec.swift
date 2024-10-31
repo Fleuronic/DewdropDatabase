@@ -5,7 +5,7 @@ import protocol Catena.Scoped
 import protocol Catenoid.Fields
 
 extension Database: GroupSpec {
-	public func listGroups() async -> Self.Result<[GroupListFields]> {
+	public func listGroups() async -> Results<GroupListFields> {
 		await fetch()
 	}
 }

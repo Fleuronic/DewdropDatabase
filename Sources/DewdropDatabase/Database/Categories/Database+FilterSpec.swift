@@ -7,7 +7,7 @@ import protocol Catena.Scoped
 import protocol Catenoid.Fields
 
 extension Database: FilterSpec {
-	public func listFilters(forCollectionWith id: Collection.ID = .all, searchingFor query: String? = nil, sortingTagsBy tagSort: Tag.Sort? = nil) async -> Self.Result<[FilterListFields]> {
+	public func listFilters(forCollectionWith id: Collection.ID = .all, searchingFor query: String? = nil, sortingTagsBy tagSort: Tag.Sort? = nil) async -> Results<FilterListFields> {
 		await fetch()
 	}
 }
