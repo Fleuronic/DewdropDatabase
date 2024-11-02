@@ -3,6 +3,7 @@
 import struct Dewdrop.Raindrop
 import protocol DewdropService.HighlightSpec
 import protocol Catenoid.Fields
+import protocol Catena.Scoped
 
 extension Database: HighlightSpec {
 	public func listHighlights(onPage page: Int? = nil, listing highlightsPerPage: Int? = nil) async -> Results<HighlightListFields> {
