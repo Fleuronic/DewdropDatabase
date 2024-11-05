@@ -21,7 +21,9 @@ import protocol Schemata.AnyModel
 import protocol Catenoid.Database
 
 public struct Database<
+	// TODO: ...ResultFields
 	RaindropListFields: RaindropFields & Fields<Raindrop.Identified>,
+	RaindropHighlightListFields: RaindropFields & Fields<Raindrop.Identified>,
 	CollectionListFields: CollectionFields & Fields<Collection.Identified>,
 	ChildCollectionListFields: CollectionFields & Fields<Collection.Identified>,
 	SystemCollectionListFields: CollectionFields & Fields<Collection.Identified>,
@@ -32,9 +34,8 @@ public struct Database<
 >: @unchecked Sendable {
 	public private(set) var store: Store<ReadWrite>
 
-	public init(
-		// TODO: Default fields
-	) async {
+	// TODO: Default fields
+	public init() async {
 		store = try! await Self.createStore()
 	}
 }
@@ -43,7 +44,7 @@ public struct Database<
 extension Database: Catenoid.Database {
 	public static var types: [any AnyModel.Type] {
 		[
-			Raindrop.Identified.self,
+			Dewdrop.Raindrop.Identified.self,
 			Collection.Identified.self,
 			Group.Identified.self,
 			Filter.Identified.self,

@@ -16,7 +16,7 @@ let package = Package(
 		),
 	],
 	dependencies: [
-		.package(url: "https://github.com/Fleuronic/DewdropService", branch: "main"),
+		.package(path: "../../Submodules/DewdropService"),
 		.package(url: "https://github.com/Fleuronic/Catenoid", branch: "main")
 	],
 	targets: [
