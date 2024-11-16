@@ -16,21 +16,24 @@ import protocol DewdropService.CollectionFields
 import protocol DewdropService.FilterFields
 import protocol DewdropService.TagFields
 import protocol DewdropService.HighlightFields
+import protocol DewdropService.UserFields
+import protocol DewdropService.UserAuthenticatedFields
 import protocol Catenoid.Fields
 import protocol Schemata.AnyModel
 import protocol Catenoid.Database
 
 public struct Database<
-	// TODO: ...ResultFields
-	RaindropListFields: RaindropFields & Fields<Raindrop.Identified>,
-	RaindropHighlightListFields: RaindropFields & Fields<Raindrop.Identified>,
-	CollectionListFields: CollectionFields & Fields<Collection.Identified>,
-	ChildCollectionListFields: CollectionFields & Fields<Collection.Identified>,
-	SystemCollectionListFields: CollectionFields & Fields<Collection.Identified>,
-	GroupListFields: GroupFields & Fields<Group.Identified>,
-	FilterListFields: FilterFields & Fields<Filter.Identified>,
-	TagListFields: TagFields & Fields<Tag.Identified>,
-	HighlightListFields: HighlightFields & Fields<Highlight.Identified>
+	RaindropResultFields: RaindropFields & Fields<Raindrop.Identified>,
+	RaindropHighlightResultFields: RaindropFields & Fields<Raindrop.Identified>,
+	CollectionResultFields: CollectionFields & Fields<Collection.Identified>,
+	ChildCollectionResultFields: CollectionFields & Fields<Collection.Identified>,
+	SystemCollectionResultFields: CollectionFields & Fields<Collection.Identified>,
+	GroupResultFields: GroupFields & Fields<Group.Identified>,
+	FilterResultFields: FilterFields & Fields<Filter.Identified>,
+	TagResultFields: TagFields & Fields<Tag.Identified>,
+	HighlightResultFields: HighlightFields & Fields<Highlight.Identified>,
+	UserAuthenticatedResultFields: UserAuthenticatedFields & Fields<User.Identified>,
+	UserPublicResultFields: UserFields & Fields<User.Identified>
 >: @unchecked Sendable {
 	public private(set) var store: Store<ReadWrite>
 
@@ -38,6 +41,11 @@ public struct Database<
 	public init() async {
 		store = try! await Self.createStore()
 	}
+}
+
+// MARK: -
+public extension Database {
+	typealias RaindropIDProvider = Never
 }
 
 // MARK: -

@@ -9,6 +9,11 @@ import struct Dewdrop.Filter
 import struct DewdropService.IdentifiedRaindrop
 import protocol Catenoid.Model
 
+public extension Raindrop {
+	typealias UngenerableID = Identified.UngenerableID
+}
+
+// MARK: -
 extension Raindrop.Identified: Schemata.Model {
 	// MARK: Model
 	public enum Path: String {
