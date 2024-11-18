@@ -1,26 +1,39 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
 import Schemata
-import PersistDB
 
 import struct Dewdrop.User
 import struct Foundation.URL
-import protocol Catenoid.Fields
-import protocol Catenoid.Model
+import protocol Catena.Representable
+import protocol Catenoid.Row
+import protocol Catenoid.RowIdentifying
 import protocol DewdropService.UserAuthenticatedFields
 
-struct UserRow: UserAuthenticatedFields {
-	let id: User.ID
-	let fullName: String
-	let email: String?
-	let avatarURL: URL?
-	let hasProSubscription: Bool?
+public struct UserRow: UserAuthenticatedFields {
+	public let id: User.ID
+	public let fullName: String
+	public let email: String?
+	public let avatarURL: URL?
+	public let hasProSubscription: Bool?
 }
 
-// MARK
-extension UserRow: Fields {
+// MARK: -
+extension UserRow: Row {
+	// MARK: Valued
+	public typealias Value = User
+
+	// MARK: Representable
+	public var value: Value {
+		.init(
+			fullName: fullName,
+			email: email,
+			avatarURL: avatarURL,
+			hasProSubscription: hasProSubscription
+		)
+	}
+
 	// MARK: ModelProjection
-	static let projection = Projection<Self.Model, Self>(
+	public static let projection = Projection<Self.Model, Self>(
 		Self.init,
 		\.id,
 		\.value.fullName,
@@ -31,14 +44,8 @@ extension UserRow: Fields {
 }
 
 // MARK: -
-extension UserRow: Catenoid.Model {
-	// MARK: Model
-	public var valueSet: ValueSet<User.Identified> {
-		[
-			\.value.fullName == fullName,
-			\.value.email == email,
-			\.value.avatarURL == avatarURL,
-			\.value.hasProSubscription == hasProSubscription
-		]
+extension User: Catenoid.RowIdentifying {
+	public static func identified(from row: UserRow?) -> Identified? {
+		row.map(Identified.init)
 	}
 }

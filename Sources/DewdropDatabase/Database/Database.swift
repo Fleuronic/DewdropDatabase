@@ -36,16 +36,25 @@ public struct Database<
 	UserPublicResultFields: UserFields & Fields<User.Identified>
 >: @unchecked Sendable {
 	public private(set) var store: Store<ReadWrite>
-
-	// TODO: Default fields
-	public init() async {
-		store = try! await Self.createStore()
-	}
 }
 
 // MARK: -
-public extension Database {
-	typealias RaindropIDProvider = Never
+public extension Database<
+	RaindropRow,
+	RaindropRow,
+	CollectionRow,
+	ChildCollectionRow,
+	SystemCollectionRow,
+	GroupRow,
+	FilterRow,
+	TagRow,
+	HighlightRow,
+	UserRow,
+	UserRow
+>{
+	init() async {
+		store = try! await Self.createStore()
+	}
 }
 
 // MARK: -
