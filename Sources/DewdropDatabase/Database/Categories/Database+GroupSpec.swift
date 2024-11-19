@@ -4,7 +4,7 @@ import protocol DewdropService.GroupSpec
 import protocol Catena.Scoped
 
 extension Database: GroupSpec {
-	public func listGroups() async -> Results<GroupResultFields> {
+	public func listGroups() async -> Results<GroupSpecifiedFields> {
 		await fetch()
 	}
 }

@@ -6,7 +6,7 @@ import protocol DewdropService.FilterSpec
 import protocol Catena.Scoped
 
 extension Database: FilterSpec {
-	public func listFilters(forCollectionWith id: Collection.ID = .all, searchingFor query: String? = nil, sortingTagsBy tagSort: Tag.Sort? = nil) async -> Results<FilterResultFields> {
+	public func listFilters(forCollectionWith id: Collection.ID = .all, searchingFor query: String? = nil, sortingTagsBy tagSort: Tag.Sort? = nil) async -> Results<FilterSpecifiedFields> {
 		await fetch()
 	}
 }

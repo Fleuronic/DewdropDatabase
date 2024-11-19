@@ -9,11 +9,11 @@ import protocol DewdropService.UserSpec
 import protocol Catena.Scoped
 
 extension Database: UserSpec {
-	public func fetchUser(with id: User.ID) async -> SingleResult<UserPublicResultFields?> {
+	public func fetchUser(with id: User.ID) async -> SingleResult<UserPublicSpecifiedFields?> {
 		await fetch(where: \.id == id).map(\.first)
 	}
 
-	public func fetchAuthenticatedUser() async -> SingleResult<UserAuthenticatedResultFields?> {
+	public func fetchAuthenticatedUser() async -> SingleResult<UserAuthenticatedSpecifiedFields?> {
 		await fetch().map(\.first)
 	}
 
@@ -31,7 +31,7 @@ extension Database: UserSpec {
 		password: Password?
 //		config: User.Config?
 //		groups: [Group]?
-	) async -> SingleResult<UserAuthenticatedResultFields> {
+	) async -> SingleResult<UserAuthenticatedSpecifiedFields> {
 		fatalError()
 	}
 }

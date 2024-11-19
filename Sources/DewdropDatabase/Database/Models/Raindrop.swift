@@ -10,6 +10,7 @@ import struct DewdropService.IdentifiedRaindrop
 import protocol Catenoid.Model
 
 public extension Raindrop {
+	typealias InvalidID = Identified.InvalidID
 	typealias UngenerableID = Identified.UngenerableID
 }
 

@@ -1,12 +1,13 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
+import PersistDB
 
 import struct Dewdrop.User
+import struct Schemata.Projection
 import struct Foundation.URL
 import protocol Catena.Representable
 import protocol Catenoid.Row
-import protocol Catenoid.RowIdentifying
+import protocol Catenoid.Model
 import protocol DewdropService.UserAuthenticatedFields
 
 public struct UserRow: UserAuthenticatedFields {
@@ -32,8 +33,19 @@ extension UserRow: Row {
 		)
 	}
 
+	// MARK: Row
+	public init(from representable: some Representable<Value, IdentifiedValue>) {
+		let value = representable.value
+
+		id = representable.id
+		fullName = value.fullName
+		email = value.email
+		avatarURL = value.avatarURL
+		hasProSubscription = value.hasProSubscription
+	}
+
 	// MARK: ModelProjection
-	public static let projection = Projection<Self.Model, Self>(
+	public static let projection = Projection<Model, Self>(
 		Self.init,
 		\.id,
 		\.value.fullName,
@@ -44,8 +56,14 @@ extension UserRow: Row {
 }
 
 // MARK: -
-extension User: Catenoid.RowIdentifying {
-	public static func identified(from row: UserRow?) -> Identified? {
-		row.map(Identified.init)
-	}
+extension UserRow: Catenoid.Model {
+	// MARK: Model
+	public var valueSet: ValueSet<User.Identified> {
+		 [
+			 \.value.fullName == fullName,
+			 \.value.email == email,
+			 \.value.avatarURL == avatarURL,
+			 \.value.hasProSubscription == hasProSubscription
+		 ]
+	 }
 }
