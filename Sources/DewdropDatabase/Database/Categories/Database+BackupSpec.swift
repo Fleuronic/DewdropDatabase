@@ -6,7 +6,6 @@ import struct Foundation.Data
 import struct Identity.Identifier
 import protocol DewdropService.BackupSpec
 import protocol Catena.Scoped
-import protocol Catenary.API
 
 extension Database: BackupSpec {
 	public func listBackups() async -> Results<BackupSpecifiedFields> {
