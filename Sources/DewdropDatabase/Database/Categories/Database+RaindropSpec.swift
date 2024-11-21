@@ -1,7 +1,6 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
 import enum Catenoid.UngenerableIdentifier
-import enum Dewdrop.ItemType
 import struct Dewdrop.Raindrop
 import struct Dewdrop.Collection
 import struct Foundation.URL
@@ -36,7 +35,7 @@ extension Database: RaindropSpec {
 		id: Raindrop.UngenerableID,
 		url: URL,
 		title: String?,
-		itemType: ItemType?,
+		itemType: Raindrop.ItemType?,
 		excerpt: String?,
 		coverURL: URL?,
 		order: Int?,

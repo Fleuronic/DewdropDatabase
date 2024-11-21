@@ -2,7 +2,6 @@
 
 import Schemata
 
-import enum Dewdrop.ItemType
 import struct Dewdrop.Raindrop
 import struct Dewdrop.Collection
 import struct Dewdrop.Highlight
@@ -15,7 +14,7 @@ public struct RaindropRow: RaindropFields {
 	public let id: Raindrop.ID
 	public let url: URL
 	public let title: String
-	public let itemType: ItemType
+	public let itemType: Raindrop.ItemType
 	public let isFavorite: Bool
 	public let isBroken: Bool
 	public let collection: Collection.IDFields
@@ -45,7 +44,7 @@ private extension RaindropRow {
 		collectionID: Collection.ID,
 		url: URL,
 		title: String,
-		itemType: ItemType,
+		itemType: Raindrop.ItemType,
 		isFavorite: Bool,
 		isBroken: Bool
 	) {
