@@ -10,6 +10,12 @@ import protocol DewdropService.RaindropSpec
 import protocol Catena.Scoped
 
 extension Database: RaindropSpec {
+	#if swift(<6.0)
+	public typealias RaindropFetchFields = RaindropSpecifiedFields
+	public typealias RaindropListFields = RaindropSpecifiedFields
+	public typealias RaindropCreationFields = RaindropSpecifiedFields
+	#endif
+
 	public func fetchRaindrop(with id: Raindrop.ID) async -> SingleResult<RaindropSpecifiedFields> {
 		fatalError()
 	}

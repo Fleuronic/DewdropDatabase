@@ -8,6 +8,10 @@ import protocol DewdropService.BackupSpec
 import protocol Catena.Scoped
 
 extension Database: BackupSpec {
+	#if swift(<6.0)
+	public typealias BackupListFields = BackupSpecifiedFields
+	#endif
+
 	public func listBackups() async -> Results<BackupSpecifiedFields> {
 		await fetch()
 	}

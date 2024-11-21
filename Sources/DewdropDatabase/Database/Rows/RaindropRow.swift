@@ -37,7 +37,10 @@ extension RaindropRow: Fields {
 
 // MARK: -
 private extension RaindropRow {
-	private init(
+	#if swift(<6.0)
+	@Sendable
+	#endif
+	init(
 		id: Raindrop.ID,
 		collectionID: Collection.ID,
 		url: URL,

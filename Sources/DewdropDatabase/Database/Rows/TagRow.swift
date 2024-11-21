@@ -27,7 +27,10 @@ extension TagRow: Fields {
 
 // MARK: -
 private extension TagRow {
-	private init(
+	#if swift(<6.0)
+	@Sendable
+	#endif
+	init(
 		id: Tag.ID,
 		count: Int
 	) {

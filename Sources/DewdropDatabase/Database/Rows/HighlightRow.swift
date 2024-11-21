@@ -10,6 +10,16 @@ import protocol DewdropService.HighlightFields
 public struct HighlightRow: HighlightFields {
 	public let id: Highlight.ID
 	public let raindropID: Raindrop.ID
+
+	#if swift(<6.0)
+	@Sendable init(
+		id: Highlight.ID,
+		raindropID: Raindrop.ID
+	) {
+		self.id = id
+		self.raindropID = raindropID
+	}
+	#endif
 }
 
 // MARK

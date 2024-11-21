@@ -11,6 +11,20 @@ public struct SystemCollectionRow: CollectionFields {
 	public let title: String
 	public let count: Int
 	public let sortIndex: Int
+
+	#if swift(<6.0)
+	@Sendable init(
+		id: Collection.ID,
+		title: String,
+		count: Int,
+		sortIndex: Int
+	) {
+		self.id = id
+		self.title = title
+		self.count = count
+		self.sortIndex = sortIndex
+	}
+	#endif
 }
 
 // MARK

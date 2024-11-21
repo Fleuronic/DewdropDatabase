@@ -7,9 +7,13 @@ import struct Dewdrop.User
 import struct Dewdrop.Network
 import protocol DewdropService.UserSpec
 import protocol Catena.Scoped
-import protocol Catenoid.ResultProviding
 
 extension Database: UserSpec {
+	#if swift(<6.0)
+	public typealias PublicUserFetchFields = UserPublicSpecifiedFields
+	public typealias AuthenticatedUserFetchFields = UserAuthenticatedSpecifiedFields
+	#endif
+
 	public func fetchUser(with id: User.ID) async -> SingleResult<UserPublicSpecifiedFields?> {
 		await fetch(where: \.id == id).map(\.first)
 	}
@@ -18,7 +22,7 @@ extension Database: UserSpec {
 		await fetch().map(\.first)
 	}
 
-	public func connectSocialNetworkAccount(from provider: Network.Offline) async -> NoResults {
+	public func connectSocialNetworkAccount(from provider: Network.Offline) async -> NoResult {
 		// Provider is offline; cannot connect using database
 	}
 

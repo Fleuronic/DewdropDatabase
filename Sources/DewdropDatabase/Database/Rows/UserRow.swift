@@ -16,6 +16,22 @@ public struct UserRow: UserAuthenticatedFields {
 	public let email: String?
 	public let avatarURL: URL?
 	public let hasProSubscription: Bool?
+
+	#if swift(<6.0)
+	@Sendable init(
+		id: User.ID,
+		fullName: String,
+		email: String?,
+		avatarURL: URL?,
+		hasProSubscription: Bool?
+	) {
+		self.id = id
+		self.fullName = fullName
+		self.email = email
+		self.avatarURL = avatarURL
+		self.hasProSubscription = hasProSubscription
+	}
+	#endif
 }
 
 // MARK: -

@@ -10,6 +10,18 @@ public struct FilterRow: FilterFields {
 	public let id: Filter.ID
 	public let sortIndex: Int
 	public let count: Int
+
+	#if swift(<6.0)
+	@Sendable init(
+		id: Filter.ID,
+		sortIndex: Int,
+		count: Int
+	) {
+		self.id = id
+		self.sortIndex = sortIndex
+		self.count = count
+	}
+	#endif
 }
 
 // MARK

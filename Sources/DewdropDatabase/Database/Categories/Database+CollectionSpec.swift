@@ -4,11 +4,13 @@ import struct Dewdrop.Collection
 import protocol DewdropService.CollectionSpec
 import protocol Catena.Scoped
 import protocol Catenoid.Database
-import protocol Catenoid.ResultProviding
 
 extension Database: CollectionSpec {
 	#if swift(<6.0)
+	public typealias CollectionFetchFields = CollectionSpecifiedFields
 	public typealias RootCollectionListFields = CollectionSpecifiedFields
+	public typealias ChildCollectionListFields = ChildCollectionSpecifiedFields
+	public typealias SystemCollectionListFields = SystemCollectionSpecifiedFields
 	#endif
 
 	public func fetchCollection(with id: Collection.ID) async -> SingleResult<CollectionSpecifiedFields> {
@@ -27,19 +29,19 @@ extension Database: CollectionSpec {
 		await fetch(where: .isSystem)
 	}
 
-	public func listCollaborators(ofCollectionWith id: Collection.ID) async -> NoResults {
+	public func listCollaborators(ofCollectionWith id: Collection.ID) async -> NoResult {
 		fatalError()
 	}
 
-	public func removeCollection(with id: Collection.ID) async -> NoResults {
+	public func removeCollection(with id: Collection.ID) async -> NoResult {
 		await removeCollections(with: [id])
 	}
 
-	public func removeCollections(with ids: [Collection.ID]) async -> NoResults {
+	public func removeCollections(with ids: [Collection.ID]) async -> NoResult {
 		await delete(with: ids).map { _ in }
 	}
 
-	public func emptyTrash() async -> NoResults {
+	public func emptyTrash() async -> NoResult {
 		fatalError()
 	}
 }

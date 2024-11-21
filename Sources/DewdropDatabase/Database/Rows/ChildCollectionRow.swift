@@ -32,6 +32,9 @@ extension ChildCollectionRow: Fields {
 
 // MARK: -
 private extension ChildCollectionRow {
+	#if swift(<6.0)
+	@Sendable
+	#endif
 	init(
 		id: Collection.ID,
 		parentID: Collection.ID?,

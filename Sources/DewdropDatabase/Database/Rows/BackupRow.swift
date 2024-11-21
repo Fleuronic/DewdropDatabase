@@ -13,6 +13,13 @@ import protocol DewdropService.BackupFields
 public struct BackupRow: BackupFields {
 	public let id: Backup.ID
 	public let creationDate: Date
+
+	#if swift(<6.0)
+	@Sendable init(id: Backup.ID, creationDate: Date) {
+		self.id = id
+		self.creationDate = creationDate
+	}
+	#endif
 }
 
 // MARK: -

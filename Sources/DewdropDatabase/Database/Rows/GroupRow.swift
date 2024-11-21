@@ -52,6 +52,9 @@ extension GroupRow: Fields {
 
 // MARK: -
 private extension GroupRow {
+	#if swift(<6.0)
+	@Sendable
+	#endif
 	init(
 		id: Group.ID,
 		sortIndex: Int,
