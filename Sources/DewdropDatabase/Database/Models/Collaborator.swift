@@ -17,7 +17,7 @@ extension Collaborator.Identified: Schemata.Model {
 	}
 
 	public static var schema: Schema<Self> {
-		let id = \Self.userID * .id
+		let id = \Self.id * .id
 		let fullName = \Self.value.fullName * .fullName
 		let email = \Self.value.email * .email
 		let role = \Self.value.role * .role
@@ -31,13 +31,13 @@ extension Collaborator.Identified: Schemata.Model {
 		)
 	}
 
-	public static let schemaName = "users"
+	public static let schemaName = "collaborators"
 }
 
 // MARK: -
 extension Collaborator.Identified: PersistDB.Model {
 	// MARK: Model
 	public static var defaultOrder: [Ordering<Self>] {
-		[.init(\.id, ascending: true)]
+		[.init(\.id)]
 	}
 }

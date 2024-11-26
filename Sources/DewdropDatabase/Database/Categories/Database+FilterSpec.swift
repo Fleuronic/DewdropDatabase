@@ -11,6 +11,6 @@ extension Database: FilterSpec {
 	#endif
 
 	public func listFilters(forCollectionWith id: Collection.ID = .all, searchingFor query: String? = nil, sortingTagsBy tagSort: Tag.Sort? = nil) async -> Results<FilterSpecifiedFields> {
-		await fetch()
+		await fetch() // TODO
 	}
 }

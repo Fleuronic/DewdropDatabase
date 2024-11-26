@@ -30,6 +30,6 @@ extension Filter.Identified: Schemata.Model {
 extension Filter.Identified: PersistDB.Model {
 	// MARK: Model
 	public static var defaultOrder: [Ordering<Self>] {
-		[.init(\.sortIndex, ascending: true)]
+		[.init(\.sortIndex)]
 	}
 }

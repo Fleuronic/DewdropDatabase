@@ -29,6 +29,6 @@ extension Tagging: Schemata.Model {
 extension Tagging: PersistDB.Model {
 	// MARK: Model
 	public static var defaultOrder: [Ordering<Self>] {
-		[.init(\.id, ascending: false)]
+		[.init(\.id)]
 	}
 }

@@ -35,6 +35,20 @@ public struct UserRow: UserAuthenticatedFields {
 }
 
 // MARK: -
+public extension UserRow {
+	init(user: some Representable<Value, IdentifiedValue>) {
+		let value = user.value
+		self.init(
+			id: user.id,
+			fullName: value.fullName,
+			email: value.email,
+			avatarURL: value.avatarURL,
+			hasProSubscription: value.hasProSubscription
+		)
+	}
+}
+
+// MARK: -
 extension UserRow: Row {
 	// MARK: Valued
 	public typealias Value = User
@@ -49,17 +63,6 @@ extension UserRow: Row {
 		)
 	}
 
-	// MARK: Row
-	public init(from representable: some Representable<Value, IdentifiedValue>) {
-		let value = representable.value
-
-		id = representable.id
-		fullName = value.fullName
-		email = value.email
-		avatarURL = value.avatarURL
-		hasProSubscription = value.hasProSubscription
-	}
-
 	// MARK: ModelProjection
 	public static let projection = Projection<Model, Self>(
 		Self.init,
@@ -71,15 +74,14 @@ extension UserRow: Row {
 	)
 }
 
-// MARK: -
 extension UserRow: Catenoid.Model {
 	// MARK: Model
 	public var valueSet: ValueSet<User.Identified> {
-		 [
-			 \.value.fullName == fullName,
-			 \.value.email == email,
-			 \.value.avatarURL == avatarURL,
-			 \.value.hasProSubscription == hasProSubscription
-		 ]
-	 }
+		[
+			\.value.fullName == fullName,
+			\.value.email == email,
+			\.value.avatarURL == avatarURL,
+			\.value.hasProSubscription == hasProSubscription
+		]
+	}
 }

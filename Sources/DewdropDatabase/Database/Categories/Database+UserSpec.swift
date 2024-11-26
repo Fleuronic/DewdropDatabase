@@ -22,11 +22,11 @@ extension Database: UserSpec {
 		await fetch().map(\.first)
 	}
 
-	public func connectSocialNetworkAccount(from provider: Network.Offline) async -> NoResult {
+	public func connectSocialNetworkAccount(from provider: Network.Offline) async -> EmptyResult {
 		// Provider is offline; cannot connect using database
 	}
 
-	public func disconnectSocialNetworkAccount(from provider: Network.Offline) async -> NoResult {
+	public func disconnectSocialNetworkAccount(from provider: Network.Offline) async -> EmptyResult {
 		// Provider is offline; cannot disconnect using database
 	}
 

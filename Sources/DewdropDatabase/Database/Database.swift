@@ -9,6 +9,7 @@ import struct Dewdrop.Filter
 import struct Dewdrop.Tag
 import struct Dewdrop.Highlight
 import struct Dewdrop.User
+import struct Dewdrop.Collaborator
 import struct Dewdrop.Backup
 import struct DewdropService.Tagging
 import protocol DewdropService.RaindropFields
@@ -17,7 +18,7 @@ import protocol DewdropService.CollectionFields
 import protocol DewdropService.FilterFields
 import protocol DewdropService.TagFields
 import protocol DewdropService.HighlightFields
-import protocol DewdropService.UserFields
+ import protocol DewdropService.UserFields
 import protocol DewdropService.UserAuthenticatedFields
 import protocol DewdropService.BackupFields
 import protocol Catenoid.Fields
@@ -26,13 +27,13 @@ import protocol Catenoid.Database
 
 public struct Database<
 	RaindropSpecifiedFields: RaindropFields & Fields<Raindrop.Identified>,
-	RaindropHighlightSpecifiedFields: RaindropFields & Fields<Raindrop.Identified>,
-	CollectionSpecifiedFields: CollectionFields & Fields<Collection.Identified>,
-	ChildCollectionSpecifiedFields: CollectionFields & Fields<Collection.Identified>,
-	SystemCollectionSpecifiedFields: CollectionFields & Fields<Collection.Identified>,
+	RootCollectionSpecifiedFields: CollectionFields & Fields<Collection.Identified>,
+	ChildRootCollectionSpecifiedFields: CollectionFields & Fields<Collection.Identified>,
+	SystemRootCollectionSpecifiedFields: CollectionFields & Fields<Collection.Identified>,
 	GroupSpecifiedFields: GroupFields & Fields<Group.Identified>,
 	FilterSpecifiedFields: FilterFields & Fields<Filter.Identified>,
 	HighlightSpecifiedFields: HighlightFields & Fields<Highlight.Identified>,
+	HighlightInRaindropSpecifiedFields: HighlightFields & Fields<Highlight.Identified>,
 	UserAuthenticatedSpecifiedFields: UserAuthenticatedFields & Fields<User.Identified>,
 	UserPublicSpecifiedFields: UserFields & Fields<User.Identified>,
 	BackupSpecifiedFields: BackupFields & Fields<Backup.Identified>
@@ -43,12 +44,12 @@ public struct Database<
 // MARK: -
 public extension Database<
 	RaindropRow,
-	RaindropRow,
-	CollectionRow,
+	RootCollectionRow,
 	ChildCollectionRow,
 	SystemCollectionRow,
 	GroupRow,
 	FilterRow,
+	HighlightRow,
 	HighlightRow,
 	UserRow,
 	UserRow,
@@ -66,27 +67,13 @@ public extension Database<
 public extension Database {
 	func specifyingRaindropFields<Fields>(_: Fields.Type) -> Database<
 		Fields,
-		RaindropHighlightSpecifiedFields,
-		CollectionSpecifiedFields,
-		ChildCollectionSpecifiedFields,
-		SystemCollectionSpecifiedFields,
+		RootCollectionSpecifiedFields,
+		ChildRootCollectionSpecifiedFields,
+		SystemRootCollectionSpecifiedFields,
 		GroupSpecifiedFields,
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
-		UserAuthenticatedSpecifiedFields,
-		UserPublicSpecifiedFields,
-		BackupSpecifiedFields
-	> { .init(store: store) }
-
-	func specifyingRaindropHighlightFields<Fields>(_: Fields.Type) -> Database<
-		RaindropSpecifiedFields,
-		Fields,
-		CollectionSpecifiedFields,
-		ChildCollectionSpecifiedFields,
-		SystemCollectionSpecifiedFields,
-		GroupSpecifiedFields,
-		FilterSpecifiedFields,
-		HighlightSpecifiedFields,
+		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		UserPublicSpecifiedFields,
 		BackupSpecifiedFields
@@ -94,13 +81,13 @@ public extension Database {
 
 	func specifyingCollectionFields<Fields>(_: Fields.Type) -> Database<
 		RaindropSpecifiedFields,
-		RaindropHighlightSpecifiedFields,
 		Fields,
-		ChildCollectionSpecifiedFields,
-		SystemCollectionSpecifiedFields,
+		ChildRootCollectionSpecifiedFields,
+		SystemRootCollectionSpecifiedFields,
 		GroupSpecifiedFields,
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
+		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		UserPublicSpecifiedFields,
 		BackupSpecifiedFields
@@ -108,13 +95,13 @@ public extension Database {
 
 	func specifyingChildCollectionFields<Fields>(_: Fields.Type) -> Database<
 		RaindropSpecifiedFields,
-		RaindropHighlightSpecifiedFields,
-		CollectionSpecifiedFields,
+		RootCollectionSpecifiedFields,
 		Fields,
-		SystemCollectionSpecifiedFields,
+		SystemRootCollectionSpecifiedFields,
 		GroupSpecifiedFields,
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
+		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		UserPublicSpecifiedFields,
 		BackupSpecifiedFields
@@ -122,13 +109,13 @@ public extension Database {
 
 	func specifyingSystemCollectionFields<Fields>(_: Fields.Type) -> Database<
 		RaindropSpecifiedFields,
-		RaindropHighlightSpecifiedFields,
-		CollectionSpecifiedFields,
-		ChildCollectionSpecifiedFields,
+		RootCollectionSpecifiedFields,
+		ChildRootCollectionSpecifiedFields,
 		Fields,
 		GroupSpecifiedFields,
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
+		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		UserPublicSpecifiedFields,
 		BackupSpecifiedFields
@@ -136,13 +123,13 @@ public extension Database {
 
 	func specifyingGroupFields<Fields>(_: Fields.Type) -> Database<
 		RaindropSpecifiedFields,
-		RaindropHighlightSpecifiedFields,
-		CollectionSpecifiedFields,
-		ChildCollectionSpecifiedFields,
-		SystemCollectionSpecifiedFields,
+		RootCollectionSpecifiedFields,
+		ChildRootCollectionSpecifiedFields,
+		SystemRootCollectionSpecifiedFields,
 		Fields,
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
+		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		UserPublicSpecifiedFields,
 		BackupSpecifiedFields
@@ -150,13 +137,13 @@ public extension Database {
 
 	func specifyingFilterFields<Fields>(_: Fields.Type) -> Database<
 		RaindropSpecifiedFields,
-		RaindropHighlightSpecifiedFields,
-		CollectionSpecifiedFields,
-		ChildCollectionSpecifiedFields,
-		SystemCollectionSpecifiedFields,
+		RootCollectionSpecifiedFields,
+		ChildRootCollectionSpecifiedFields,
+		SystemRootCollectionSpecifiedFields,
 		GroupSpecifiedFields,
 		Fields,
 		HighlightSpecifiedFields,
+		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		UserPublicSpecifiedFields,
 		BackupSpecifiedFields
@@ -164,12 +151,27 @@ public extension Database {
 
 	func specifyingHighlightFields<Fields>(_: Fields.Type) -> Database<
 		RaindropSpecifiedFields,
-		RaindropHighlightSpecifiedFields,
-		CollectionSpecifiedFields,
-		ChildCollectionSpecifiedFields,
-		SystemCollectionSpecifiedFields,
+		RootCollectionSpecifiedFields,
+		ChildRootCollectionSpecifiedFields,
+		SystemRootCollectionSpecifiedFields,
 		GroupSpecifiedFields,
 		FilterSpecifiedFields,
+		Fields,
+		HighlightInRaindropSpecifiedFields,
+		UserAuthenticatedSpecifiedFields,
+		UserPublicSpecifiedFields,
+		BackupSpecifiedFields
+	> { .init(store: store) }
+
+
+	func specifyingHighlightInRaindropFields<Fields>(_: Fields.Type) -> Database<
+		RaindropSpecifiedFields,
+		RootCollectionSpecifiedFields,
+		ChildRootCollectionSpecifiedFields,
+		SystemRootCollectionSpecifiedFields,
+		GroupSpecifiedFields,
+		FilterSpecifiedFields,
+		HighlightSpecifiedFields,
 		Fields,
 		UserAuthenticatedSpecifiedFields,
 		UserPublicSpecifiedFields,
@@ -178,13 +180,13 @@ public extension Database {
 
 	func specifyingUserAuthenticatedFields<Fields>(_: Fields.Type) -> Database<
 		RaindropSpecifiedFields,
-		RaindropHighlightSpecifiedFields,
-		CollectionSpecifiedFields,
-		ChildCollectionSpecifiedFields,
-		SystemCollectionSpecifiedFields,
+		RootCollectionSpecifiedFields,
+		ChildRootCollectionSpecifiedFields,
+		SystemRootCollectionSpecifiedFields,
 		GroupSpecifiedFields,
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
+		HighlightInRaindropSpecifiedFields,
 		Fields,
 		UserPublicSpecifiedFields,
 		BackupSpecifiedFields
@@ -192,13 +194,13 @@ public extension Database {
 
 	func specifyingUserPublicFields<Fields>(_: Fields.Type) -> Database<
 		RaindropSpecifiedFields,
-		RaindropHighlightSpecifiedFields,
-		CollectionSpecifiedFields,
-		ChildCollectionSpecifiedFields,
-		SystemCollectionSpecifiedFields,
+		RootCollectionSpecifiedFields,
+		ChildRootCollectionSpecifiedFields,
+		SystemRootCollectionSpecifiedFields,
 		GroupSpecifiedFields,
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
+		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		Fields,
 		BackupSpecifiedFields
@@ -206,13 +208,13 @@ public extension Database {
 
 	func specifyingBackupFields<Fields>(_: Fields.Type) -> Database<
 		RaindropSpecifiedFields,
-		RaindropHighlightSpecifiedFields,
-		CollectionSpecifiedFields,
-		ChildCollectionSpecifiedFields,
-		SystemCollectionSpecifiedFields,
+		RootCollectionSpecifiedFields,
+		ChildRootCollectionSpecifiedFields,
+		SystemRootCollectionSpecifiedFields,
 		GroupSpecifiedFields,
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
+		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		UserPublicSpecifiedFields,
 		Fields
@@ -230,6 +232,7 @@ extension Database: Catenoid.Database {
 			Tag.Identified.self,
 			Highlight.Identified.self,
 			User.Identified.self,
+			Collaborator.Identified.self,
 			Backup.Identified.self,
 			Tagging.self
 		]
@@ -243,6 +246,7 @@ extension Database: Catenoid.Database {
 		store.delete(Delete<Tag.Identified>(nil))
 		store.delete(Delete<Highlight.Identified>(nil))
 		store.delete(Delete<User.Identified>(nil))
+		store.delete(Delete<Collaborator.Identified>(nil))
 		store.delete(Delete<Backup.Identified>(nil))
 		store.delete(Delete<Tagging>(nil))
 	}

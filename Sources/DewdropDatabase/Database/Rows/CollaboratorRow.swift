@@ -48,13 +48,15 @@ extension CollaboratorRow: Row {
 	}
 
 	// MARK: Row
-	public init(from representable: some Representable<Value, IdentifiedValue>) {
-		let value = representable.value
+	public init(collaborator: some Representable<Value, Collaborator.Identified>) {
+		let value = collaborator.value
 
-		id = representable.id
-		fullName = value.fullName
-		email = value.email
-		role = value.role
+		self.init(
+			id: collaborator.id,
+			fullName: value.fullName,
+			email: value.email,
+			role: value.role
+		)
 	}
 
 	// MARK: ModelProjection

@@ -16,16 +16,16 @@ extension Database: BackupSpec {
 		await fetch()
 	}
 
-	public func createBackup(using creator: BackupCreator) async -> NoResult {
+	public func createBackup(using method: BackupCreationMethod) async -> EmptyResult {
 		// Cannot create backup using database
 	}
 
-	public func downloadBackup(with id: Backup.InvalidID, as format: FileFormat) async -> NoResult {
+	public func downloadBackup(with id: Backup.InvalidID, as format: FileFormat) async -> EmptyResult {
 		// Cannot download backup using database
 	}
 }
 
 // MARK: -
 public extension Database {
-	enum BackupCreator {}
+	enum BackupCreationMethod {}
 }

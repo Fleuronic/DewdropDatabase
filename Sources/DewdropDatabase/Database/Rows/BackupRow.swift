@@ -23,6 +23,17 @@ public struct BackupRow: BackupFields {
 }
 
 // MARK: -
+public extension BackupRow {
+	init(backup: some Representable<Value, IdentifiedValue>) {
+		let value = backup.value
+		self.init(
+			id: backup.id,
+			creationDate: value.creationDate
+		)
+	}
+}
+
+// MARK: -
 extension BackupRow: Row {
 	// MARK: Valued
 	public typealias Value = Backup
@@ -30,14 +41,6 @@ extension BackupRow: Row {
 	// MARK: Representable
 	public var value: Value {
 		.init(creationDate: creationDate)
-	}
-
-	// MARK: Row
-	public init(from representable: some Representable<Value, IdentifiedValue>) {
-		let value = representable.value
-
-		id = representable.id
-		creationDate = value.creationDate
 	}
 
 	// MARK: ModelProjection

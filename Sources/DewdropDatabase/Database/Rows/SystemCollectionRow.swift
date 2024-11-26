@@ -1,9 +1,12 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
+import PersistDB
 
 import struct Dewdrop.Collection
-import protocol Catenoid.Fields
+import struct Schemata.Projection
+import protocol Catena.Representable
+import protocol Catenoid.Row
+import protocol Catenoid.Model
 import protocol DewdropService.CollectionFields
 
 public struct SystemCollectionRow: CollectionFields {
@@ -27,8 +30,44 @@ public struct SystemCollectionRow: CollectionFields {
 	#endif
 }
 
-// MARK
-extension SystemCollectionRow: Fields {
+// MARK: -
+public extension SystemCollectionRow {
+	init(
+		id: Collection.ID,
+		count: Int
+	) {
+		self.init(
+			id: id,
+			title: Collection.systemTitle(forCollectionWith: id)!,
+			count: count,
+			sortIndex: id.rawValue
+		)
+	}
+}
+
+// MARK: -
+extension SystemCollectionRow: Row {
+	// MARK: Valued
+	public typealias Value = Collection
+
+	// MARK: Representable
+	public var value: Value {
+		.init(
+			title: title,
+			count: count,
+			coverURL: nil, // TODO
+			colorString: nil, // TODO
+			view: .grid, // TODO
+			access: .init(level: .owner, isDraggable: false),
+			sortIndex: sortIndex,
+			isPublic: false,
+			isShared: false,
+			isExpanded: false,
+			creationDate: .init(), // TODO
+			updateDate: .init() // TODO
+		)
+	}
+
 	// MARK: ModelProjection
 	public static let projection = Projection<Self.Model, Self>(
 		Self.init,
@@ -37,4 +76,16 @@ extension SystemCollectionRow: Fields {
 		\.value.count,
 		\.value.sortIndex
 	)
+}
+
+extension SystemCollectionRow: Catenoid.Model {
+	// MARK: Model
+	public var valueSet: ValueSet<Collection.Identified> {
+		[
+			\.value.title == title,
+			\.value.count == count,
+			\.value.isShared == false,
+			\.value.sortIndex == sortIndex
+		]
+	}
 }

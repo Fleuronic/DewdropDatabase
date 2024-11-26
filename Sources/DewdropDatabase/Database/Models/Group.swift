@@ -12,15 +12,15 @@ extension Group.Identified: Schemata.Model {
 	// MARK: Model
 	public enum Path: String {
 		case id
+		case title
 		case isHidden = "hidden"
-		case sortIndex = "sort_index"
 	}
 
 	public static let schema = Schema(
 		Self.init,
 		\.id * .id,
+		\.value.title * .title,
 		\.value.isHidden * .isHidden,
-		\.value.sortIndex * .sortIndex,
 		\.collections <<- \.group
 	)
 
@@ -32,8 +32,7 @@ extension Group.Identified: PersistDB.Model {
 	// MARK: Model
 	public static var defaultOrder: [Ordering<Self>] {
 		[
-			.init(\.value.sortIndex),
-			.init(\.collections.value.sortIndex)
+			.init(\.id)
 		]
 	}
 }
