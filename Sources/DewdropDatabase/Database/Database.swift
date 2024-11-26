@@ -59,7 +59,7 @@ public extension Database<
 		store = try! await Self.createStore()
 	}
 
-	init(store: Store<ReadWrite>) {
+	init(store: PersistDB.Store<ReadWrite>) {
 		self.store = store
 	}
 }

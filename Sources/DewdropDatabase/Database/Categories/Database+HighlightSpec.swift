@@ -11,7 +11,7 @@ import protocol Catena.Scoped
 extension Database: HighlightSpec {
 	#if swift(<6.0)
 	public typealias HighlightListFields = HighlightSpecifiedFields
-	public typealias HighlightInRaindropListFields = RaindropHighlightSpecifiedFields
+	public typealias HighlightInRaindropListFields = HighlightInRaindropSpecifiedFields
 	#endif
 
 	public func listHighlights(ofRaindropWith id: Raindrop.ID) async -> Results<HighlightInRaindropSpecifiedFields> {

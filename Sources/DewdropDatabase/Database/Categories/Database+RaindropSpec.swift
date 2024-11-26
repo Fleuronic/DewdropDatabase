@@ -14,7 +14,7 @@ extension Database: RaindropSpec {
 	#if swift(<6.0)
 	public typealias RaindropFetchFields = RaindropSpecifiedFields
 	public typealias RaindropListFields = RaindropSpecifiedFields
-	public typealias RaindropCreationFields = RaindropSpecifiedFields
+	public typealias RaindropCreationFields = Never
 	#endif
 
 	public func fetchRaindrop(with id: Raindrop.ID) async -> SingleResult<RaindropSpecifiedFields?> {
@@ -29,8 +29,8 @@ extension Database: RaindropSpec {
 		// Cannot use database to find suggestions
 	}
 
-	public func removeRaindrop(with id: Raindrop.ID) async -> Results<Raindrop.ID> {
-		await removeRaindrops(fromCollectionWith: .all, matching: [id])
+	public func removeRaindrop(with id: Raindrop.ID) async -> SingleResult<Raindrop.ID?> {
+		await removeRaindrops(fromCollectionWith: .all, matching: [id]).map(\.first)
 	}
 
 	public func removeRaindrops(fromCollectionWith collectionID: Collection.ID, matching ids: [Raindrop.ID]? = nil, searchingFor search: String? = nil) async -> Results<Raindrop.ID> {
