@@ -11,14 +11,14 @@ extension Tagging: Schemata.Model {
 	// MARK: Model
 	public enum Path: String {
 		case id
-		case tagName
+		case tag
 		case raindrop
 	}
 
 	public static let schema = Schema(
 		Self.init,
 		\.id * .id,
-		\.tagName * .tagName,
+		\.tag --> .tag,
 		\.raindrop --> .raindrop
 	)
 

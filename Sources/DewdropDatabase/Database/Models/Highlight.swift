@@ -13,19 +13,36 @@ extension Highlight.Identified: Schemata.Model {
 	public enum Path: String {
 		case id
 		case text
+		case color
+		case note
 		case creationDate
 		case updateDate
 		case raindrop
+		case creator
 	}
 
-	public static let schema = Schema(
-		Self.init,
-		\.id * .id,
-		\.value.content.text * .text,
-		\.value.creationDate * .creationDate,
-		\.value.updateDate * .updateDate,
-		\.raindrop --> .raindrop
-	)
+	public static var schema: Schema<Self> {
+		let id = \Self.id * .id
+		let text = \Self.value.content.text * .text
+		let color = \Self.value.content.color * .color
+		let note = \Self.value.content.note * .note
+		let value = \Self.value.creationDate * .creationDate
+		let updateDate = \Self.value.updateDate * .updateDate
+		let raindrop = \Self.raindrop --> .raindrop
+		let creator = \Self.creator --> .creator
+
+		return .init(
+			Self.init,
+			id,
+			text,
+			color,
+			note,
+			value,
+			updateDate,
+			raindrop,
+			creator
+		)
+	}
 
 	public static let schemaName = "highlights"
 }

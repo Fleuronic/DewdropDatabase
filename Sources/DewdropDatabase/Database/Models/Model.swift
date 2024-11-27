@@ -12,10 +12,7 @@ extension Array: Schemata.AnyModel where Element: Model {
 
 extension Array: Schemata.Model where Element: Model {
 	public static var schema: Schema<Self> {
-		if let collections = self as? [Collection.Identified].Type {
-			return collections.schema as! Schema<Self>
-		}
-
-		fatalError()
+		let collections = self as! [Collection.Identified].Type
+		return collections.schema as! Schema<Self>
 	}
 }

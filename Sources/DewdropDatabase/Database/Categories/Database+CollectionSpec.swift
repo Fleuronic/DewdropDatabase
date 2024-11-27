@@ -1,7 +1,5 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import PersistDB
-
 import struct Dewdrop.Collection
 import struct Dewdrop.Raindrop
 import protocol DewdropService.CollectionSpec
@@ -17,7 +15,7 @@ extension Database: CollectionSpec {
 	#endif
 
 	public func fetchCollection(with id: Collection.ID) async -> SingleResult<RootCollectionSpecifiedFields?> {
-		await fetch(where: \.id == id).map(\.first)
+		await fetch(with: id).map(\.first)
 	}
 
 	public func listRootCollections() async -> Results<RootCollectionSpecifiedFields> {

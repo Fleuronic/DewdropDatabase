@@ -28,11 +28,11 @@ public extension RootCollectionRow {
 		let value = collection.value
 		self.init(
 			id: collection.id,
+			groupID: groupID,
 			title: value.title,
 			count: value.count,
 			isShared: value.isShared,
-			sortIndex: value.sortIndex,
-			groupID: groupID
+			sortIndex: value.sortIndex
 		)
 	}
 }
@@ -64,11 +64,11 @@ extension RootCollectionRow: Row {
 	public static let projection = Projection<Self.Model, Self>(
 		Self.init,
 		\.id,
+		\.group.id,
 		\.value.title,
 		\.value.count,
 		\.value.isShared,
-		\.value.sortIndex,
-		\.group.id
+		\.value.sortIndex
 	)
 }
 
@@ -78,8 +78,13 @@ extension RootCollectionRow: Catenoid.Model {
 		[
 			\.value.title == title,
 			\.value.count == count,
-			\.value.isShared == isShared,
+			\.value.view == .list,
 			\.value.sortIndex == sortIndex,
+			\.value.isPublic == false,
+			\.value.isShared == isShared,
+			\.value.isExpanded == false,
+			\.value.creationDate == .init(),
+			\.value.updateDate == .init(),
 			\.group == group?.id
 		]
 	}
@@ -92,18 +97,19 @@ private extension RootCollectionRow {
 	#endif
 	init(
 		id: Collection.ID,
+		groupID: Group.ID,
 		title: String,
 		count: Int,
 		isShared: Bool,
-		sortIndex: Int,
-		groupID: Group.ID
+		sortIndex: Int
 	) {
-		self.id = id
-		self.title = title
-		self.count = count
-		self.isShared = isShared
-		self.sortIndex = sortIndex
-
-		group = .init(id: groupID)
+		self.init(
+			id: id,
+			title: title,
+			count: count,
+			isShared: isShared,
+			sortIndex: sortIndex,
+			group: .init(id: groupID)
+		)
 	}
 }

@@ -1,7 +1,5 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import PersistDB
-
 import enum Catenoid.UngenerableIdentifier
 import struct Dewdrop.Raindrop
 import struct Dewdrop.Collection
@@ -18,7 +16,7 @@ extension Database: RaindropSpec {
 	#endif
 
 	public func fetchRaindrop(with id: Raindrop.ID) async -> SingleResult<RaindropSpecifiedFields?> {
-		await fetch(where: \.id == id).map(\.first)
+		await fetch(with: id).map(\.first)
 	}
 
 	public func listRaindrops(inCollectionWith id: Collection.ID = .all, searchingFor query: String? = nil, sortedBy sort: Raindrop.Sort? = nil, onPage page: Int? = nil, listing raindropsPerPage: Int? = nil) async -> Results<RaindropSpecifiedFields> {

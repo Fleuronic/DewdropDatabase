@@ -107,13 +107,14 @@ private extension RaindropRow {
 		isFavorite: Bool,
 		isBroken: Bool
 	) {
-		self.id = id
-		self.title = title
-		self.url = url
-		self.itemType = itemType
-		self.isFavorite = isFavorite
-		self.isBroken = isBroken
-
-		collection = .init(id: collectionID)
+		self.init(
+			id: id,
+			url: url,
+			title: title,
+			itemType: itemType,
+			isFavorite: isFavorite,
+			isBroken: isBroken,
+			collection: .init(id: collectionID)
+		)
 	}
 }

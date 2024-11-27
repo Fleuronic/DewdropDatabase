@@ -16,11 +16,11 @@ extension Database: BackupSpec {
 		await fetch()
 	}
 
-	public func createBackup(using method: BackupCreationMethod) async -> EmptyResult {
+	public func createBackup(using method: BackupCreationMethod) async -> ImpossibleResult {
 		// Cannot create backup using database
 	}
 
-	public func downloadBackup(with id: Backup.InvalidID, as format: FileFormat) async -> EmptyResult {
+	public func downloadBackup(with id: Backup.InvalidID, as format: FileFormat) async -> ImpossibleResult {
 		// Cannot download backup using database
 	}
 }

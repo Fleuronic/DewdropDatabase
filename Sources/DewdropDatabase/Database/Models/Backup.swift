@@ -16,7 +16,7 @@ extension Backup.Identified: Schemata.Model {
 	// MARK: Model
 	public enum Path: String {
 		case id
-		case creationDate
+		case creationDate = "creation_date"
 	}
 
 	public static let schema = Schema(

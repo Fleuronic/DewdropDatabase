@@ -1,7 +1,5 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import PersistDB
-
 import enum Dewdrop.Password
 import struct Dewdrop.User
 import struct Dewdrop.Network
@@ -15,7 +13,7 @@ extension Database: UserSpec {
 	#endif
 
 	public func fetchUser(with id: User.ID) async -> SingleResult<UserPublicSpecifiedFields?> {
-		await fetch(where: \.id == id).map(\.first)
+		await fetch(with: id).map(\.first)
 	}
 
 	public func fetchAuthenticatedUser() async -> SingleResult<UserAuthenticatedSpecifiedFields?> {

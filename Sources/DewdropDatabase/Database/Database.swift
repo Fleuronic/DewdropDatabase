@@ -33,7 +33,6 @@ public struct Database<
 	GroupSpecifiedFields: GroupFields & Fields<Group.Identified>,
 	FilterSpecifiedFields: FilterFields & Fields<Filter.Identified>,
 	HighlightSpecifiedFields: HighlightFields & Fields<Highlight.Identified>,
-	HighlightInRaindropSpecifiedFields: HighlightFields & Fields<Highlight.Identified>,
 	UserAuthenticatedSpecifiedFields: UserAuthenticatedFields & Fields<User.Identified>,
 	UserPublicSpecifiedFields: UserFields & Fields<User.Identified>,
 	BackupSpecifiedFields: BackupFields & Fields<Backup.Identified>
@@ -49,7 +48,6 @@ public extension Database<
 	SystemCollectionRow,
 	GroupRow,
 	FilterRow,
-	HighlightRow,
 	HighlightRow,
 	UserRow,
 	UserRow,
@@ -73,7 +71,6 @@ public extension Database {
 		GroupSpecifiedFields,
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
-		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		UserPublicSpecifiedFields,
 		BackupSpecifiedFields
@@ -87,7 +84,6 @@ public extension Database {
 		GroupSpecifiedFields,
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
-		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		UserPublicSpecifiedFields,
 		BackupSpecifiedFields
@@ -101,7 +97,6 @@ public extension Database {
 		GroupSpecifiedFields,
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
-		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		UserPublicSpecifiedFields,
 		BackupSpecifiedFields
@@ -115,7 +110,6 @@ public extension Database {
 		GroupSpecifiedFields,
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
-		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		UserPublicSpecifiedFields,
 		BackupSpecifiedFields
@@ -129,7 +123,6 @@ public extension Database {
 		Fields,
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
-		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		UserPublicSpecifiedFields,
 		BackupSpecifiedFields
@@ -143,7 +136,6 @@ public extension Database {
 		GroupSpecifiedFields,
 		Fields,
 		HighlightSpecifiedFields,
-		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		UserPublicSpecifiedFields,
 		BackupSpecifiedFields
@@ -157,26 +149,11 @@ public extension Database {
 		GroupSpecifiedFields,
 		FilterSpecifiedFields,
 		Fields,
-		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		UserPublicSpecifiedFields,
 		BackupSpecifiedFields
 	> { .init(store: store) }
 
-
-	func specifyingHighlightInRaindropFields<Fields>(_: Fields.Type) -> Database<
-		RaindropSpecifiedFields,
-		RootCollectionSpecifiedFields,
-		ChildRootCollectionSpecifiedFields,
-		SystemRootCollectionSpecifiedFields,
-		GroupSpecifiedFields,
-		FilterSpecifiedFields,
-		HighlightSpecifiedFields,
-		Fields,
-		UserAuthenticatedSpecifiedFields,
-		UserPublicSpecifiedFields,
-		BackupSpecifiedFields
-	> { .init(store: store) }
 
 	func specifyingUserAuthenticatedFields<Fields>(_: Fields.Type) -> Database<
 		RaindropSpecifiedFields,
@@ -186,7 +163,6 @@ public extension Database {
 		GroupSpecifiedFields,
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
-		HighlightInRaindropSpecifiedFields,
 		Fields,
 		UserPublicSpecifiedFields,
 		BackupSpecifiedFields
@@ -200,7 +176,6 @@ public extension Database {
 		GroupSpecifiedFields,
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
-		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		Fields,
 		BackupSpecifiedFields
@@ -214,7 +189,6 @@ public extension Database {
 		GroupSpecifiedFields,
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
-		HighlightInRaindropSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
 		UserPublicSpecifiedFields,
 		Fields

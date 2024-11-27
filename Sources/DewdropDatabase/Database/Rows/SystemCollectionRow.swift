@@ -84,8 +84,13 @@ extension SystemCollectionRow: Catenoid.Model {
 		[
 			\.value.title == title,
 			\.value.count == count,
+			\.value.view == .list,
+			\.value.sortIndex == sortIndex,
+			\.value.isPublic == false,
 			\.value.isShared == false,
-			\.value.sortIndex == sortIndex
+			\.value.isExpanded == false,
+			\.value.creationDate == .init(),
+			\.value.updateDate == .init()
 		]
 	}
 }

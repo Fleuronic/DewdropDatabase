@@ -15,8 +15,15 @@ extension Collection.Identified: Schemata.Model {
 		case parentID = "parent_id"
 		case title
 		case count
-		case isShared = "shared"
+		case coverURL = "cover_url"
+		case colorString = "color_string"
+		case view
 		case sortIndex = "sort_index"
+		case isPublic = "public"
+		case isShared = "shared"
+		case isExpanded = "expanded"
+		case creationDate = "creation_date"
+		case updateDate = "update_date"
 		case group = "parent_group"
 	}
 
@@ -25,9 +32,16 @@ extension Collection.Identified: Schemata.Model {
 		let parentID = \Self.parentID * .parentID
 		let title = \Self.value.title * .title
 		let count = \Self.value.count * .count
-		let isShared = \Self.value.isShared * .isShared
+		let coverURL = \Self.value.coverURL * .coverURL
+		let colorString = \Self.value.colorString * .colorString
+		let view = \Self.value.view * .view
 		let sortIndex = \Self.value.sortIndex * .sortIndex
-		let parentGroup = \Self.group -?> .group
+		let isPublic = \Self.value.isPublic * .isPublic
+		let isShared = \Self.value.isShared * .isShared
+		let isExpanded = \Self.value.isExpanded * .isExpanded
+		let creationDate = \Self.value.creationDate * .creationDate
+		let updateDate = \Self.value.updateDate * .updateDate
+		let group = \Self.group -?> .group
 
 		return .init(
 			Self.init,
@@ -35,9 +49,16 @@ extension Collection.Identified: Schemata.Model {
 			parentID,
 			title,
 			count,
-			isShared,
+			coverURL,
+			colorString,
+			view,
 			sortIndex,
-			parentGroup
+			isPublic,
+			isShared,
+			isExpanded,
+			creationDate,
+			updateDate,
+			group
 		)
 	}
 
@@ -60,8 +81,15 @@ extension [Collection.Identified] {
 		let parentID = \Self.parentID * .parentID
 		let title = \Self.value.title * .title
 		let count: Property<Self, [Int]> = \Self.value.count * .count
-		let isShared = \Self.value.isShared * .isShared
+		let coverURL = \Self.value.coverURL * .coverURL
+		let colorString = \Self.value.colorString * .colorString
+		let view = \Self.value.view * .view
 		let sortIndex = \Self.value.sortIndex * .sortIndex
+		let isPublic = \Self.value.isPublic * .isPublic
+		let isShared = \Self.value.isShared * .isShared
+		let isExpanded = \Self.value.isExpanded * .isExpanded
+		let creationDate = \Self.value.creationDate * .creationDate
+		let updateDate = \Self.value.updateDate * .updateDate
 
 		return .init(
 			Self.init,
@@ -69,8 +97,15 @@ extension [Collection.Identified] {
 			parentID,
 			title,
 			count,
+			coverURL,
+			colorString,
+			view,
+			sortIndex,
+			isPublic,
 			isShared,
-			sortIndex
+			isExpanded,
+			creationDate,
+			updateDate
 		)
 	}
 }

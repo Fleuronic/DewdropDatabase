@@ -12,11 +12,12 @@ import protocol DewdropService.CollectionFields
 
 public struct ChildCollectionRow: CollectionFields {
 	public let id: Collection.ID
-	public let parentID: Collection.ID
+	public let parentID: Collection.ID?
 	public let title: String
 	public let count: Int
-	public let isShared: Bool
+	public let view: Collection.View
 	public let sortIndex: Int
+	public let isShared: Bool
 }
 
 // MARK: -
@@ -31,8 +32,9 @@ public extension ChildCollectionRow {
 			parentID: parentID,
 			title: value.title,
 			count: value.count,
-			isShared: value.isShared,
-			sortIndex: value.sortIndex
+			view: value.view,
+			sortIndex: value.sortIndex,
+			isShared: value.isShared
 		)
 	}
 }
@@ -49,7 +51,7 @@ extension ChildCollectionRow: Row {
 			count: count,
 			coverURL: nil, // TODO
 			colorString: nil, // TODO
-			view: .grid, // TODO
+			view: view,
 			access: .init(level: .owner, isDraggable: true), // TODO
 			sortIndex: sortIndex,
 			isPublic: false, // TODO
@@ -67,8 +69,9 @@ extension ChildCollectionRow: Row {
 		\.parentID,
 		\.value.title,
 		\.value.count,
-		\.value.isShared,
-		\.value.sortIndex
+		\.value.view,
+		\.value.sortIndex,
+		\.value.isShared
 	)
 }
 
@@ -79,30 +82,15 @@ extension ChildCollectionRow: Catenoid.Model {
 			\.parentID == parentID,
 			\.value.title == title,
 			\.value.count == count,
-			\.value.isShared == isShared,
+//			\.value.coverURL ==
+//			 case colorString = "color_string"
+			\.value.view == view,
 			\.value.sortIndex == sortIndex,
+			\.value.isPublic == false,
+			\.value.isShared == isShared,
+			\.value.isExpanded == false,
+			\.value.creationDate == .init(),
+			\.value.updateDate == .init()
 		]
-	}
-}
-
-// MARK: -
-private extension ChildCollectionRow {
-	#if swift(<6.0)
-	@Sendable
-	#endif
-	init(
-		id: Collection.ID,
-		parentID: Collection.ID?,
-		title: String,
-		count: Int,
-		isShared: Bool,
-		sortIndex: Int
-	) {
-		self.id = id
-		self.parentID = parentID!
-		self.title = title
-		self.count = count
-		self.isShared = isShared
-		self.sortIndex = sortIndex
 	}
 }
