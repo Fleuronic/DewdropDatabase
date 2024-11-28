@@ -5,6 +5,8 @@ import PersistDB
 import struct Dewdrop.Collection
 import struct Dewdrop.Group
 import struct Schemata.Projection
+import struct Foundation.URL
+import struct Foundation.Date
 import protocol Catena.Representable
 import protocol Catenoid.Row
 import protocol Catenoid.Model
@@ -14,8 +16,16 @@ public struct RootCollectionRow: CollectionFields {
 	public let id: Collection.ID
 	public let title: String
 	public let count: Int
-	public let isShared: Bool
+	public let coverURL: URL?
+	public let colorString: String?
+	public let view: Collection.View
+	public let accessLevel: Collection.Access.Level
 	public let sortIndex: Int
+	public let isPublic: Bool
+	public let isShared: Bool
+	public let isExpanded: Bool
+	public let creationDate: Date
+	public let updateDate: Date
 	public let group: Group.IDFields?
 }
 
@@ -31,8 +41,16 @@ public extension RootCollectionRow {
 			groupID: groupID,
 			title: value.title,
 			count: value.count,
+			coverURL: value.coverURL,
+			colorString: value.colorString,
+			view: value.view!,
+			accessLevel: value.access.level,
+			sortIndex: value.sortIndex,
+			isPublic: value.isPublic,
 			isShared: value.isShared,
-			sortIndex: value.sortIndex
+			isExpanded: value.isExpanded,
+			creationDate: value.creationDate!,
+			updateDate: value.updateDate!
 		)
 	}
 }
@@ -47,16 +65,16 @@ extension RootCollectionRow: Row {
 		.init(
 			title: title,
 			count: count,
-			coverURL: nil, // TODO
-			colorString: nil, // TODO
-			view: .grid, // TODO
-			access: .init(level: .owner, isDraggable: true), // TODO
+			coverURL: coverURL,
+			colorString: colorString,
+			view: view,
+			access: .init(level: accessLevel, isDraggable: true), // TODO
 			sortIndex: sortIndex,
-			isPublic: false, // TODO
+			isPublic: isPublic,
 			isShared: isShared,
-			isExpanded: false, // TODO
-			creationDate: .init(), // TODO
-			updateDate: .init() // TODO
+			isExpanded: isExpanded,
+			creationDate: creationDate,
+			updateDate: updateDate
 		)
 	}
 
@@ -67,8 +85,16 @@ extension RootCollectionRow: Row {
 		\.group.id,
 		\.value.title,
 		\.value.count,
+		\.value.coverURL,
+		\.value.colorString,
+		\.value.view!,
+		\.value.access.level,
+		\.value.sortIndex,
+		\.value.isPublic,
 		\.value.isShared,
-		\.value.sortIndex
+		\.value.isExpanded,
+		\.value.creationDate!,
+		\.value.updateDate!
 	)
 }
 
@@ -78,13 +104,16 @@ extension RootCollectionRow: Catenoid.Model {
 		[
 			\.value.title == title,
 			\.value.count == count,
-			\.value.view == .list,
+			\.value.coverURL == coverURL,
+			\.value.colorString == colorString,
+			\.value.view == view,
+			\.value.access.level == accessLevel,
 			\.value.sortIndex == sortIndex,
-			\.value.isPublic == false,
+			\.value.isPublic == isPublic,
 			\.value.isShared == isShared,
-			\.value.isExpanded == false,
-			\.value.creationDate == .init(),
-			\.value.updateDate == .init(),
+			\.value.isExpanded == isExpanded,
+			\.value.creationDate == creationDate,
+			\.value.updateDate == updateDate,
 			\.group == group?.id
 		]
 	}
@@ -100,15 +129,31 @@ private extension RootCollectionRow {
 		groupID: Group.ID,
 		title: String,
 		count: Int,
+		coverURL: URL?,
+		colorString: String?,
+		view: Collection.View,
+		accessLevel: Collection.Access.Level,
+		sortIndex: Int,
+		isPublic: Bool,
 		isShared: Bool,
-		sortIndex: Int
+		isExpanded: Bool,
+		creationDate: Date,
+		updateDate: Date
 	) {
 		self.init(
 			id: id,
 			title: title,
 			count: count,
-			isShared: isShared,
+			coverURL: coverURL,
+			colorString: colorString,
+			view: view,
+			accessLevel: accessLevel,
 			sortIndex: sortIndex,
+			isPublic: isPublic,
+			isShared: isShared,
+			isExpanded: isExpanded,
+			creationDate: creationDate,
+			updateDate: updateDate,
 			group: .init(id: groupID)
 		)
 	}

@@ -20,8 +20,7 @@ extension Group.Identified: Schemata.Model {
 		Self.init,
 		\.id * .id,
 		\.value.title * .title,
-		\.value.isHidden * .isHidden,
-		\.collections <<- \.group
+		\.value.isHidden * .isHidden
 	)
 
 	public static let schemaName = "groups"
@@ -31,8 +30,6 @@ extension Group.Identified: Schemata.Model {
 extension Group.Identified: PersistDB.Model {
 	// MARK: Model
 	public static var defaultOrder: [Ordering<Self>] {
-		[
-			.init(\.id)
-		]
+		[.init(\.id)]
 	}
 }

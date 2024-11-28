@@ -55,16 +55,16 @@ extension SystemCollectionRow: Row {
 		.init(
 			title: title,
 			count: count,
-			coverURL: nil, // TODO
-			colorString: nil, // TODO
-			view: .grid, // TODO
+			coverURL: nil,
+			colorString: nil,
+			view: nil,
 			access: .init(level: .owner, isDraggable: false),
 			sortIndex: sortIndex,
 			isPublic: false,
 			isShared: false,
 			isExpanded: false,
-			creationDate: .init(), // TODO
-			updateDate: .init() // TODO
+			creationDate: nil,
+			updateDate: nil
 		)
 	}
 
@@ -84,13 +84,11 @@ extension SystemCollectionRow: Catenoid.Model {
 		[
 			\.value.title == title,
 			\.value.count == count,
-			\.value.view == .list,
 			\.value.sortIndex == sortIndex,
+			\.value.access.level == .owner,
 			\.value.isPublic == false,
 			\.value.isShared == false,
-			\.value.isExpanded == false,
-			\.value.creationDate == .init(),
-			\.value.updateDate == .init()
+			\.value.isExpanded == false
 		]
 	}
 }

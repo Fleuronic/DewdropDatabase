@@ -5,6 +5,8 @@ import PersistDB
 import struct Dewdrop.Collection
 import struct Catena.IDFields
 import struct Schemata.Projection
+import struct Foundation.URL
+import struct Foundation.Date
 import protocol Catena.Representable
 import protocol Catenoid.Row
 import protocol Catenoid.Model
@@ -12,12 +14,19 @@ import protocol DewdropService.CollectionFields
 
 public struct ChildCollectionRow: CollectionFields {
 	public let id: Collection.ID
-	public let parentID: Collection.ID?
+	public let parentID: Collection.ID
 	public let title: String
 	public let count: Int
+	public let coverURL: URL?
+	public let colorString: String?
 	public let view: Collection.View
+	public let accessLevel: Collection.Access.Level
 	public let sortIndex: Int
+	public let isPublic: Bool
 	public let isShared: Bool
+	public let isExpanded: Bool
+	public let creationDate: Date
+	public let updateDate: Date
 }
 
 // MARK: -
@@ -32,9 +41,16 @@ public extension ChildCollectionRow {
 			parentID: parentID,
 			title: value.title,
 			count: value.count,
-			view: value.view,
+			coverURL: value.coverURL,
+			colorString: value.colorString,
+			view: value.view!,
+			accessLevel: value.access.level,
 			sortIndex: value.sortIndex,
-			isShared: value.isShared
+			isPublic: value.isPublic,
+			isShared: value.isShared,
+			isExpanded: value.isExpanded,
+			creationDate: value.creationDate!,
+			updateDate: value.updateDate!
 		)
 	}
 }
@@ -49,16 +65,16 @@ extension ChildCollectionRow: Row {
 		.init(
 			title: title,
 			count: count,
-			coverURL: nil, // TODO
-			colorString: nil, // TODO
+			coverURL: coverURL,
+			colorString: colorString,
 			view: view,
-			access: .init(level: .owner, isDraggable: true), // TODO
+			access: .init(level: accessLevel, isDraggable: true), // TODO
 			sortIndex: sortIndex,
-			isPublic: false, // TODO
+			isPublic: isPublic,
 			isShared: isShared,
-			isExpanded: false, // TODO
-			creationDate: .init(), // TODO
-			updateDate: .init() // TODO
+			isExpanded: isExpanded,
+			creationDate: creationDate,
+			updateDate: updateDate
 		)
 	}
 
@@ -66,12 +82,19 @@ extension ChildCollectionRow: Row {
 	public static let projection = Projection<Self.Model, Self>(
 		Self.init,
 		\.id,
-		\.parentID,
+		\.parentID!,
 		\.value.title,
 		\.value.count,
-		\.value.view,
+		\.value.coverURL,
+		\.value.colorString,
+		\.value.view!,
+		\.value.access.level,
 		\.value.sortIndex,
-		\.value.isShared
+		\.value.isPublic,
+		\.value.isShared,
+		\.value.isExpanded,
+		\.value.creationDate!,
+		\.value.updateDate!
 	)
 }
 
@@ -82,15 +105,16 @@ extension ChildCollectionRow: Catenoid.Model {
 			\.parentID == parentID,
 			\.value.title == title,
 			\.value.count == count,
-//			\.value.coverURL ==
-//			 case colorString = "color_string"
+			\.value.coverURL == coverURL,
+			\.value.colorString == colorString,
 			\.value.view == view,
+			\.value.access.level == accessLevel,
 			\.value.sortIndex == sortIndex,
-			\.value.isPublic == false,
+			\.value.isPublic == isPublic,
 			\.value.isShared == isShared,
-			\.value.isExpanded == false,
-			\.value.creationDate == .init(),
-			\.value.updateDate == .init()
+			\.value.isExpanded == isExpanded,
+			\.value.creationDate == creationDate,
+			\.value.updateDate == updateDate
 		]
 	}
 }

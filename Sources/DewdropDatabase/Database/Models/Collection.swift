@@ -18,6 +18,7 @@ extension Collection.Identified: Schemata.Model {
 		case coverURL = "cover_url"
 		case colorString = "color_string"
 		case view
+		case accessLevel = "access_level"
 		case sortIndex = "sort_index"
 		case isPublic = "public"
 		case isShared = "shared"
@@ -35,6 +36,7 @@ extension Collection.Identified: Schemata.Model {
 		let coverURL = \Self.value.coverURL * .coverURL
 		let colorString = \Self.value.colorString * .colorString
 		let view = \Self.value.view * .view
+		let accessLevel = \Self.value.access.level * .accessLevel
 		let sortIndex = \Self.value.sortIndex * .sortIndex
 		let isPublic = \Self.value.isPublic * .isPublic
 		let isShared = \Self.value.isShared * .isShared
@@ -52,6 +54,7 @@ extension Collection.Identified: Schemata.Model {
 			coverURL,
 			colorString,
 			view,
+			accessLevel,
 			sortIndex,
 			isPublic,
 			isShared,
@@ -70,43 +73,6 @@ extension Collection.Identified: PersistDB.Model {
 	// MARK: Model
 	public static var defaultOrder: [Ordering<Self>] {
 		[.init(\.value.sortIndex)]
-	}
-}
-
-// MARK: -
-extension [Collection.Identified] {
-	// MARK: Model
-	public static var schema: Schema<Self> {
-		let id = \Self.id * .id
-		let parentID = \Self.parentID * .parentID
-		let title = \Self.value.title * .title
-		let count: Property<Self, [Int]> = \Self.value.count * .count
-		let coverURL = \Self.value.coverURL * .coverURL
-		let colorString = \Self.value.colorString * .colorString
-		let view = \Self.value.view * .view
-		let sortIndex = \Self.value.sortIndex * .sortIndex
-		let isPublic = \Self.value.isPublic * .isPublic
-		let isShared = \Self.value.isShared * .isShared
-		let isExpanded = \Self.value.isExpanded * .isExpanded
-		let creationDate = \Self.value.creationDate * .creationDate
-		let updateDate = \Self.value.updateDate * .updateDate
-
-		return .init(
-			Self.init,
-			id,
-			parentID,
-			title,
-			count,
-			coverURL,
-			colorString,
-			view,
-			sortIndex,
-			isPublic,
-			isShared,
-			isExpanded,
-			creationDate,
-			updateDate
-		)
 	}
 }
 

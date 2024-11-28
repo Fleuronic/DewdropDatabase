@@ -6,6 +6,7 @@ import struct Dewdrop.Group
 import struct Dewdrop.Collection
 import struct Catena.IDFields
 import struct Schemata.Projection
+import struct Foundation.Date
 import protocol Catena.Representable
 import protocol Catenoid.Row
 import protocol Catenoid.Model
@@ -15,21 +16,16 @@ public struct GroupRow: GroupFields {
 	public let title: String
 	public let isHidden: Bool
 	public let sortIndex: Int
-	public let collections: [RootCollectionRow]
 }
 
 // MARK: -
 public extension GroupRow {
-	init(
-		group: some Representable<Value, IdentifiedValue>,
-		collections: [RootCollectionRow]
-	) {
+	init(group: some Representable<Value, IdentifiedValue>) {
 		let value = group.value
 		self.init(
 			title: value.title,
 			isHidden: value.isHidden,
-			sortIndex: value.sortIndex,
-			collections: collections
+			sortIndex: value.sortIndex
 		)
 	}
 }
@@ -56,33 +52,8 @@ extension GroupRow: Row {
 		Self.init,
 		\.id,
 		\.value.title,
-		\.value.isHidden,
-		\.collections.id,
-		\.collections.value.title,
-		\.collections.value.count,
-		\.collections.value.isShared,
-		\.collections.value.sortIndex
+		\.value.isHidden
 	)
-
-	// MARK: Fields
-	public static func merge(lhs: Self, rhs: Self) -> Self {
-		let id = lhs.id
-		let title = lhs.title
-		let isHidden = lhs.isHidden
-		let lhs = lhs.collections
-		let rhs = rhs.collections
-
-		return .init(
-			id: id,
-			title: title,
-			isHidden: isHidden,
-			collectionIDs: lhs.map(\.id) + rhs.map(\.id),
-			collectionTitles: lhs.map(\.title) + rhs.map(\.title),
-			collectionCounts: lhs.map(\.count) + rhs.map(\.count),
-			collectionIsSharedFlags: lhs.map(\.isShared) + rhs.map(\.isShared),
-			collectionSortIndices: lhs.map(\.sortIndex) + rhs.map(\.sortIndex)
-		)
-	}
 }
 
 extension GroupRow: Catenoid.Model {
@@ -103,27 +74,12 @@ private extension GroupRow {
 	init(
 		id: Group.ID,
 		title: String,
-		isHidden: Bool,
-		collectionIDs: [Collection.ID],
-		collectionTitles: [String],
-		collectionCounts: [Int],
-		collectionIsSharedFlags: [Bool],
-		collectionSortIndices: [Int]
+		isHidden: Bool
 	) {
-		self.title = title
-		self.isHidden = isHidden
-		sortIndex = id.rawValue
-
-		let groupID = id
-		collections = collectionIDs.enumerated().map { index, id in
-			.init(
-				id: id,
-				title: collectionTitles[index],
-				count: collectionCounts[index],
-				isShared: collectionIsSharedFlags[index],
-				sortIndex: collectionSortIndices[index],
-				group: .init(id: groupID)
-			)
-		}
+		self.init(
+			title: title,
+			isHidden: isHidden,
+			sortIndex: id.rawValue
+		)
 	}
 }
