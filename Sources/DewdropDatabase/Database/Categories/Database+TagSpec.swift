@@ -11,18 +11,20 @@ extension Database: TagSpec {
 	#endif
 
 	public func listTags(inCollectionWith id: Collection.ID? = nil) async -> Results<TagRow> {
-		await fetch() // TODO
+		// TODO
+		await fetch()
 	}
 
 	public func renameTag(withName tagName: String, toName updatedTagName: String, inCollectionWith id: Collection.ID?) async -> EmptyResult {
-		fatalError() // TODO
+		.success(()) // TODO
 	}
 
 	public func mergeTags(withNames tagNames: [String], intoTagNamed tagName: String, inCollectionWith id: Collection.ID?) async -> EmptyResult {
-		fatalError() // TODO
+		.success(()) // TODO
 	}
 
 	public func removeTags(withNames tagNames: [String], fromCollectionWith id: Collection.ID? = nil) async -> Results<Tag.ID> {
+		// TODO
 		let ids = tagNames.map { Tag.ID(rawValue: $0) }
 		return await delete(with: ids)
 	}
