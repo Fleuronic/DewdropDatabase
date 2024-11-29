@@ -6,6 +6,7 @@ import struct Dewdrop.Raindrop
 import struct Dewdrop.Collection
 import struct Dewdrop.Highlight
 import struct Foundation.URL
+import struct Foundation.Date
 import struct Catena.IDFields
 import struct Schemata.Projection
 import protocol Catena.Representable
@@ -18,8 +19,14 @@ public struct RaindropRow: RaindropFields {
 	public let url: URL
 	public let title: String
 	public let itemType: Raindrop.ItemType
+	public let excerpt: String?
+	public let domain: String
+	public let coverURL: URL?
+	public let note: String?
 	public let isFavorite: Bool
 	public let isBroken: Bool
+	public let creationDate: Date
+	public let updateDate: Date
 	public let collection: Collection.IDFields
 }
 
@@ -36,8 +43,14 @@ public extension RaindropRow {
 			url: value.url,
 			title: value.title,
 			itemType: value.itemType,
+			excerpt: value.excerpt,
+			domain: value.domain,
+			coverURL: value.coverURL,
+			note: value.note,
 			isFavorite: value.isFavorite,
-			isBroken: value.isBroken
+			isBroken: value.isBroken,
+			creationDate: value.creationDate,
+			updateDate: value.updateDate
 		)
 	}
 }
@@ -53,16 +66,16 @@ extension RaindropRow: Row {
 			url: url,
 			title: title,
 			itemType: itemType,
-			excerpt: nil, // TODO
-			domain: .init(), // TODO
-			coverURL: nil, // TODO
+			excerpt: excerpt,
+			domain: domain,
+			coverURL: coverURL,
 			media: [], // TODO
-			note: nil, // TODO
+			note: note,
 			cache: nil, // TODO
 			isFavorite: isFavorite,
 			isBroken: isBroken,
-			creationDate: .init(), // TODO
-			updateDate: .init() // TODO
+			creationDate: creationDate,
+			updateDate: updateDate
 		)
 	}
 
@@ -74,8 +87,14 @@ extension RaindropRow: Row {
 		\.value.url,
 		\.value.title,
 		\.value.itemType,
+		\.value.excerpt,
+		\.value.domain,
+		\.value.coverURL,
+		\.value.note,
 		\.value.isFavorite,
-		\.value.isBroken
+		\.value.isBroken,
+		\.value.creationDate,
+		\.value.updateDate
 	)
 }
 
@@ -86,8 +105,14 @@ extension RaindropRow: Catenoid.Model {
 			\.value.url == url,
 			\.value.title == title,
 			\.value.itemType == itemType,
+			\.value.excerpt == excerpt,
+			\.value.domain == domain,
+			\.value.coverURL == coverURL,
+			\.value.note == note,
 			\.value.isFavorite == isFavorite,
 			\.value.isBroken == isBroken,
+			\.value.creationDate == creationDate,
+			\.value.updateDate == updateDate,
 			\.collection == collection.id
 		]
 	}
@@ -104,16 +129,28 @@ private extension RaindropRow {
 		url: URL,
 		title: String,
 		itemType: Raindrop.ItemType,
+		excerpt: String?,
+		domain: String,
+		coverURL: URL?,
+		note: String?,
 		isFavorite: Bool,
-		isBroken: Bool
+		isBroken: Bool,
+		creationDate: Date,
+		updateDate: Date
 	) {
 		self.init(
 			id: id,
 			url: url,
 			title: title,
 			itemType: itemType,
+			excerpt: excerpt,
+			domain: domain,
+			coverURL: coverURL,
+			note: note,
 			isFavorite: isFavorite,
 			isBroken: isBroken,
+			creationDate: creationDate,
+			updateDate: updateDate,
 			collection: .init(id: collectionID)
 		)
 	}

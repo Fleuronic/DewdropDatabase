@@ -21,9 +21,15 @@ extension Raindrop.Identified: Schemata.Model {
 		case id
 		case url
 		case title
-		case itemType
+		case itemType = "item_type"
+		case excerpt
+		case domain
+		case coverURL = "cover_url"
+		case note
 		case isFavorite = "favorite"
 		case isBroken = "broken"
+		case creationDate = "creation_date"
+		case updateDate = "update_date"
 		case collection
 	}
 
@@ -32,8 +38,14 @@ extension Raindrop.Identified: Schemata.Model {
 		let url = \Self.value.url * .url
 		let title = \Self.value.title * .title
 		let itemType = \Self.value.itemType * .itemType
-		let favorite = \Self.value.isFavorite * .isFavorite
-		let broken = \Self.value.isBroken * .isBroken
+		let excerpt = \Self.value.excerpt * .excerpt
+		let domain = \Self.value.domain * .domain
+		let coverURL = \Self.value.coverURL * .coverURL
+		let note = \Self.value.note * .note
+		let isFavorite = \Self.value.isFavorite * .isFavorite
+		let isBroken = \Self.value.isBroken * .isBroken
+		let creationDate = \Self.value.creationDate * .creationDate
+		let updateDate = \Self.value.updateDate * .updateDate
 		let collection = \Self.collection -?> .collection
 
 		return .init(
@@ -42,8 +54,14 @@ extension Raindrop.Identified: Schemata.Model {
 			url,
 			title,
 			itemType,
-			favorite,
-			broken,
+			excerpt,
+			domain,
+			coverURL,
+			note,
+			isFavorite,
+			isBroken,
+			creationDate,
+			updateDate,
 			collection
 		)
 	}

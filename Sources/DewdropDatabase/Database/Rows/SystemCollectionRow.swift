@@ -86,6 +86,7 @@ extension SystemCollectionRow: Catenoid.Model {
 			\.value.count == count,
 			\.value.sortIndex == sortIndex,
 			\.value.access.level == .owner,
+			\.value.access.isDraggable == false,
 			\.value.isPublic == false,
 			\.value.isShared == false,
 			\.value.isExpanded == false

@@ -19,6 +19,7 @@ extension Collection.Identified: Schemata.Model {
 		case colorString = "color_string"
 		case view
 		case accessLevel = "access_level"
+		case isDraggable = "draggable"
 		case sortIndex = "sort_index"
 		case isPublic = "public"
 		case isShared = "shared"
@@ -37,6 +38,7 @@ extension Collection.Identified: Schemata.Model {
 		let colorString = \Self.value.colorString * .colorString
 		let view = \Self.value.view * .view
 		let accessLevel = \Self.value.access.level * .accessLevel
+		let isDraggable = \Self.value.access.isDraggable * .isDraggable
 		let sortIndex = \Self.value.sortIndex * .sortIndex
 		let isPublic = \Self.value.isPublic * .isPublic
 		let isShared = \Self.value.isShared * .isShared
@@ -55,6 +57,7 @@ extension Collection.Identified: Schemata.Model {
 			colorString,
 			view,
 			accessLevel,
+			isDraggable,
 			sortIndex,
 			isPublic,
 			isShared,

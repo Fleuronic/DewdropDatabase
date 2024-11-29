@@ -20,6 +20,7 @@ public struct RootCollectionRow: CollectionFields {
 	public let colorString: String?
 	public let view: Collection.View
 	public let accessLevel: Collection.Access.Level
+	public let isDraggable: Bool
 	public let sortIndex: Int
 	public let isPublic: Bool
 	public let isShared: Bool
@@ -45,6 +46,7 @@ public extension RootCollectionRow {
 			colorString: value.colorString,
 			view: value.view!,
 			accessLevel: value.access.level,
+			isDraggable: value.access.isDraggable,
 			sortIndex: value.sortIndex,
 			isPublic: value.isPublic,
 			isShared: value.isShared,
@@ -68,7 +70,7 @@ extension RootCollectionRow: Row {
 			coverURL: coverURL,
 			colorString: colorString,
 			view: view,
-			access: .init(level: accessLevel, isDraggable: true), // TODO
+			access: .init(level: accessLevel, isDraggable: isDraggable),
 			sortIndex: sortIndex,
 			isPublic: isPublic,
 			isShared: isShared,
@@ -89,6 +91,7 @@ extension RootCollectionRow: Row {
 		\.value.colorString,
 		\.value.view!,
 		\.value.access.level,
+		\.value.access.isDraggable,
 		\.value.sortIndex,
 		\.value.isPublic,
 		\.value.isShared,
@@ -108,6 +111,7 @@ extension RootCollectionRow: Catenoid.Model {
 			\.value.colorString == colorString,
 			\.value.view == view,
 			\.value.access.level == accessLevel,
+			\.value.access.isDraggable == isDraggable,
 			\.value.sortIndex == sortIndex,
 			\.value.isPublic == isPublic,
 			\.value.isShared == isShared,
@@ -133,6 +137,7 @@ private extension RootCollectionRow {
 		colorString: String?,
 		view: Collection.View,
 		accessLevel: Collection.Access.Level,
+		isDraggable: Bool,
 		sortIndex: Int,
 		isPublic: Bool,
 		isShared: Bool,
@@ -148,6 +153,7 @@ private extension RootCollectionRow {
 			colorString: colorString,
 			view: view,
 			accessLevel: accessLevel,
+			isDraggable: isDraggable,
 			sortIndex: sortIndex,
 			isPublic: isPublic,
 			isShared: isShared,
