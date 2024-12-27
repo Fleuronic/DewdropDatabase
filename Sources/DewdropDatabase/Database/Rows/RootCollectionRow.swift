@@ -70,7 +70,10 @@ extension RootCollectionRow: Row {
 			coverURL: coverURL,
 			colorString: colorString,
 			view: view,
-			access: .init(level: accessLevel, isDraggable: isDraggable),
+			access: .init(
+				level: accessLevel,
+				isDraggable: isDraggable
+			),
 			sortIndex: sortIndex,
 			isPublic: isPublic,
 			isShared: isShared,
@@ -81,7 +84,7 @@ extension RootCollectionRow: Row {
 	}
 
 	// MARK: ModelProjection
-	public static let projection = Projection<Self.Model, Self>(
+	public static let projection = Projection<Model, Self>(
 		Self.init,
 		\.id,
 		\.group.id,

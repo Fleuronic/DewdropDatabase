@@ -6,6 +6,7 @@ import struct Dewdrop.Raindrop
 import struct Dewdrop.Collection
 import struct Dewdrop.Group
 import struct Dewdrop.Filter
+import struct Dewdrop.Media
 import struct Dewdrop.Tag
 import struct Dewdrop.Highlight
 import struct Dewdrop.User
@@ -202,6 +203,7 @@ extension Database: Catenoid.Database {
 			Dewdrop.Raindrop.Identified.self,
 			Collection.Identified.self,
 			Group.Identified.self,
+			Media.Identified.self,
 			Filter.Identified.self,
 			Tag.Identified.self,
 			Highlight.Identified.self,
@@ -216,6 +218,7 @@ extension Database: Catenoid.Database {
 		store.delete(Delete<Raindrop.Identified>(nil))
 		store.delete(Delete<Collection.Identified>(nil))
 		store.delete(Delete<Group.Identified>(nil))
+		store.delete(Delete<Media.Identified>(nil))
 		store.delete(Delete<Filter.Identified>(nil))
 		store.delete(Delete<Tag.Identified>(nil))
 		store.delete(Delete<Highlight.Identified>(nil))

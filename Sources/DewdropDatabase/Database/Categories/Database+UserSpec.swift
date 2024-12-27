@@ -6,7 +6,7 @@ import struct Dewdrop.Network
 import protocol DewdropService.UserSpec
 import protocol Catena.Scoped
 
-extension Database: UserSpec {
+extension Database {
 	#if swift(<6.0)
 	public typealias PublicUserFetchFields = UserPublicSpecifiedFields
 	public typealias AuthenticatedUserFetchFields = UserAuthenticatedSpecifiedFields
@@ -26,15 +26,5 @@ extension Database: UserSpec {
 
 	public func disconnectSocialNetworkAccount(from provider: Network.Offline) async -> EmptyResult {
 		// Provider is offline; cannot disconnect using database
-	}
-
-	public func updateAuthenticatedUser(
-		fullName: String?,
-		email: String?,
-		password: Password?
-//		config: User.Config?
-//		groups: [Group]?
-	) async -> SingleResult<UserAuthenticatedSpecifiedFields> {
-		fatalError()
 	}
 }

@@ -39,7 +39,7 @@ extension FilterRow: Row {
 	}
 
 	// MARK: ModelProjection
-	public static let projection = Projection<Self.Model, Self>(
+	public static let projection = Projection<Model, Self>(
 		Self.init,
 		\.id,
 		\.value.count,

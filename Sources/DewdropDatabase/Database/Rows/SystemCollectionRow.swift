@@ -58,7 +58,10 @@ extension SystemCollectionRow: Row {
 			coverURL: nil,
 			colorString: nil,
 			view: nil,
-			access: .init(level: .owner, isDraggable: false),
+			access: .init(
+				level: .owner,
+				isDraggable: false
+			),
 			sortIndex: sortIndex,
 			isPublic: false,
 			isShared: false,
@@ -69,7 +72,7 @@ extension SystemCollectionRow: Row {
 	}
 
 	// MARK: ModelProjection
-	public static let projection = Projection<Self.Model, Self>(
+	public static let projection = Projection<Model, Self>(
 		Self.init,
 		\.id,
 		\.value.title,

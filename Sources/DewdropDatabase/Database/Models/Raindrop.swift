@@ -26,6 +26,10 @@ extension Raindrop.Identified: Schemata.Model {
 		case domain
 		case coverURL = "cover_url"
 		case note
+		case cacheStatus = "cache_status"
+		case cacheSize = "cache_size"
+		case cacheCreationDate = "cache_creation_date"
+		case reminderDate = "reminder_date"
 		case isFavorite = "favorite"
 		case isBroken = "broken"
 		case creationDate = "creation_date"
@@ -36,17 +40,22 @@ extension Raindrop.Identified: Schemata.Model {
 	public static var schema: Schema<Self> {
 		let id = \Self.id * .id
 		let url = \Self.value.url * .url
-		let title = \Self.value.title * .title
-		let itemType = \Self.value.itemType * .itemType
-		let excerpt = \Self.value.excerpt * .excerpt
 		let domain = \Self.value.domain * .domain
-		let coverURL = \Self.value.coverURL * .coverURL
+		let title = \Self.value.info.title * .title
+		let itemType = \Self.value.info.itemType * .itemType
+		let excerpt = \Self.value.info.excerpt * .excerpt
+		let coverURL = \Self.value.info.coverURL * .coverURL
 		let note = \Self.value.note * .note
+		let cacheStatus = \Self.value.cache?.status * .cacheStatus
+		let cacheSize = \Self.value.cache?.size * .cacheSize
+		let cacheCreationDate = \Self.value.cache?.creationDate * .cacheCreationDate
+		let reminderDate = \Self.value.reminder?.date * .reminderDate
 		let isFavorite = \Self.value.isFavorite * .isFavorite
 		let isBroken = \Self.value.isBroken * .isBroken
 		let creationDate = \Self.value.creationDate * .creationDate
 		let updateDate = \Self.value.updateDate * .updateDate
 		let collection = \Self.collection -?> .collection
+		let media = \Self.media <<- \.raindrop
 
 		return .init(
 			Self.init,
@@ -58,11 +67,16 @@ extension Raindrop.Identified: Schemata.Model {
 			domain,
 			coverURL,
 			note,
+			cacheStatus,
+			cacheSize,
+			cacheCreationDate,
+			reminderDate,
 			isFavorite,
 			isBroken,
 			creationDate,
 			updateDate,
-			collection
+			collection,
+			media
 		)
 	}
 
@@ -96,7 +110,7 @@ extension Predicate<Raindrop.Identified> {
 					nil
 				}
 			} else if let itemType = Filter.itemType(forQuery: query) {
-				\.value.itemType == itemType
+				\.value.info.itemType == itemType
 			} else {
 				nil
 			}

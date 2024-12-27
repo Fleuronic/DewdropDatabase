@@ -3,6 +3,8 @@
 import enum Catenoid.UngenerableIdentifier
 import struct Dewdrop.Raindrop
 import struct Dewdrop.Collection
+import struct Dewdrop.Media
+import struct Dewdrop.Highlight
 import struct Foundation.URL
 import struct Foundation.Date
 import protocol DewdropService.RaindropSpec
@@ -62,12 +64,12 @@ extension Database: RaindropSpec {
 		order: Int?,
 		collectionID: Collection.ID?,
 		tagNames: [String]?,
-	//	media: [Media]?,
-	//	highlightContents: [Highlight.Content]?,
-		isFavorite: Bool?
-//		creationDate: Date?,
-//		updateDate: Date?,
-//		shouldParse: Bool
+		media: [Media]?,
+		highlightContents: [Highlight.Content]? = nil,
+		isFavorite: Bool?,
+		creationDate: Date?,
+		updateDate: Date?,
+		shouldParse: Bool
 	) -> ImpossibleResult {
 		// Can’t generate ID using database
 	}

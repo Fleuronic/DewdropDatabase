@@ -15,7 +15,7 @@ extension Database: FilterSpec {
 		case .all:
 			await fetch()
 		default:
-			fatalError() // TODO
+			await fetch() // TODO
 		}
 	}
 }
