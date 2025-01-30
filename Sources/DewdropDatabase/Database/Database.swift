@@ -1,6 +1,7 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
 import PersistDB
+import Catena
 
 import struct Dewdrop.Raindrop
 import struct Dewdrop.Collection
@@ -19,7 +20,7 @@ import protocol DewdropService.CollectionFields
 import protocol DewdropService.FilterFields
 import protocol DewdropService.TagFields
 import protocol DewdropService.HighlightFields
- import protocol DewdropService.UserFields
+import protocol DewdropService.UserFields
 import protocol DewdropService.UserAuthenticatedFields
 import protocol DewdropService.BackupFields
 import protocol Catenoid.Fields
