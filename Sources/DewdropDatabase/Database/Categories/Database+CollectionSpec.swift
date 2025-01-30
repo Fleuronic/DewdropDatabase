@@ -6,7 +6,7 @@ import protocol DewdropService.CollectionSpec
 import protocol Catena.Scoped
 import protocol Catenoid.Database
 
-extension Database: CollectionSpec {
+extension Database/*: CollectionSpec*/ {
 	#if swift(<6.0)
 	public typealias CollectionFetchFields = RootCollectionSpecifiedFields
 	public typealias RootCollectionListFields = RootCollectionSpecifiedFields
@@ -29,7 +29,16 @@ extension Database: CollectionSpec {
 	public func listSystemCollections() async -> Results<SystemRootCollectionSpecifiedFields> {
 		await fetch(where: .isSystem)
 	}
+	
+	public func createCollection(_ id: Collection.UngenerableID, titled title: String, with parameters: Collection.Parameters) async -> ImpossibleResult<Collection> {
+		// Cannot generate ID using database
+	}
 
+	public func sortCollections(by sort: Collection.Sort) -> SuccessResult {
+		// Collections are already sorted through fetch query
+		.success(true)
+	}
+	
 	public func removeCollection(with id: Collection.ID) async -> Results<Collection.ID> {
 		await removeCollections(with: [id])
 	}

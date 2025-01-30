@@ -6,7 +6,7 @@ import struct Catena.IDFields
 import protocol DewdropService.HighlightSpec
 import protocol Catena.Scoped
 
-extension Database: HighlightSpec {
+extension Database/*: HighlightSpec*/ {
 	#if swift(<6.0)
 	public typealias HighlightListFields = HighlightSpecifiedFields
 	public typealias HighlightInRaindropListFields = HighlightSpecifiedFields

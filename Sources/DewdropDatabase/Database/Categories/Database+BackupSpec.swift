@@ -1,6 +1,5 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import enum Dewdrop.FileFormat
 import struct Dewdrop.Backup
 import struct Foundation.Data
 import struct Identity.Identifier
@@ -16,11 +15,11 @@ extension Database: BackupSpec {
 		await fetch()
 	}
 
-	public func createBackup(using method: BackupCreationMethod) async -> ImpossibleResult {
+	public func createBackup(using method: BackupCreationMethod) async -> ImpossibleResult<Never> {
 		// Cannot create backup using database
 	}
 
-	public func downloadBackup(with id: Backup.InvalidID, as format: FileFormat) async -> ImpossibleResult {
+	public func downloadBackup(with id: Backup.InvalidID, as format: Backup.FileFormat) async -> ImpossibleResult<Never> {
 		// Cannot download backup using database
 	}
 }

@@ -5,7 +5,7 @@ import struct Dewdrop.Collection
 import protocol DewdropService.TagSpec
 import protocol Catena.Scoped
 
-extension Database {
+extension Database/*: TagSpec*/ {
 	#if swift(<6.0)
 	public typealias TagListFields = TagRow
 	#endif

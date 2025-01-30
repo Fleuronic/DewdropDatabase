@@ -1,6 +1,5 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import enum Catenoid.UngenerableIdentifier
 import struct Dewdrop.Raindrop
 import struct Dewdrop.Collection
 import struct Dewdrop.Media
@@ -10,7 +9,7 @@ import struct Foundation.Date
 import protocol DewdropService.RaindropSpec
 import protocol Catena.Scoped
 
-extension Database: RaindropSpec {
+extension Database/*: RaindropSpec*/ {
 	#if swift(<6.0)
 	public typealias RaindropFetchFields = RaindropSpecifiedFields
 	public typealias RaindropListFields = RaindropSpecifiedFields
@@ -21,11 +20,32 @@ extension Database: RaindropSpec {
 		await fetch(with: id).map(\.first)
 	}
 
+	public func fetchContents(ofRaindropWith id: Raindrop.InvalidID) async -> ImpossibleResult<Never> {
+		// Cannot fetch raindrop contents using database
+	}
+
 	public func listRaindrops(inCollectionWith id: Collection.ID = .all, searchingFor query: String? = nil, sortedBy sort: Raindrop.Sort? = nil, onPage page: Int? = nil, listing raindropsPerPage: Int? = nil) async -> Results<RaindropSpecifiedFields> {
+		// TODO: Page, listing
 		await fetch(where: .isInCollection(with: id, searchingFor: query))
 	}
 
-	public func findSuggestions(forRaindropWith id: Raindrop.InvalidID) async -> ImpossibleResult {
+	public func createRaindrop(_ id: Raindrop.UngenerableID, for url: URL, with parameters: Raindrop.CreationParameters) async -> ImpossibleResult<Raindrop> {
+		// Cannot generate ID using database
+	}
+
+	public func createRaindrops(_ ids: Raindrop.UngenerableIDs, for urls: [URL], with parameters: [Raindrop.CreationParameters]) async -> ImpossibleResults<Raindrop> {
+		// Cannot generate IDs using database
+	}
+
+	public func uploadCover(forRaindropWith id: Raindrop.InvalidID, usingFileAt url: URL) async -> ImpossibleResult<Never> {
+		// Cannot use database to upload cover
+	}
+
+	public func findSuggestions(forRaindropWith id: Raindrop.InvalidID) async -> ImpossibleResult<Never> {
+		// Cannot use database to find suggestions
+	}
+
+	public func findSuggestions(forRaindropWith id: Raindrop.UngenerableID, createdFor url: URL) async -> ImpossibleResult<Never> {
 		// Cannot use database to find suggestions
 	}
 
@@ -53,28 +73,8 @@ extension Database: RaindropSpec {
 			return await removeRaindrops(fromCollectionWith: collectionID)
 		}
 	}
-
-	public func createRaindrop(
-		id: Raindrop.UngenerableID,
-		url: URL,
-		title: String?,
-		itemType: Raindrop.ItemType?,
-		excerpt: String?,
-		coverURL: URL?,
-		order: Int?,
-		collectionID: Collection.ID?,
-		tagNames: [String]?,
-		media: [Media]?,
-		highlightContents: [Highlight.Content]? = nil,
-		isFavorite: Bool?,
-		creationDate: Date?,
-		updateDate: Date?,
-		shouldParse: Bool
-	) -> ImpossibleResult {
-		// Can’t generate ID using database
-	}
 }
-
+// MARK: -
 private extension Database {
 	var trashCount: Int {
 		get async {
