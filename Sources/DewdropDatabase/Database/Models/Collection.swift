@@ -8,6 +8,12 @@ import struct Dewdrop.Collection
 import struct DewdropService.IdentifiedCollection
 import protocol Catenoid.Model
 
+public extension Collection {
+	typealias InvalidID = Identified.InvalidID
+	typealias UngenerableID = Identified.UngenerableID
+}
+
+// MARK: -
 extension Collection.Identified: Schemata.Model {
 	// MARK: Model
 	public enum Path: String {

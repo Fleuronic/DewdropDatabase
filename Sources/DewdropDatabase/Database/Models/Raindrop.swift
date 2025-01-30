@@ -7,11 +7,14 @@ import struct Dewdrop.Raindrop
 import struct Dewdrop.Collection
 import struct Dewdrop.Filter
 import struct DewdropService.IdentifiedRaindrop
+import struct Catena.ImpossibleFields
 import protocol Catenoid.Model
 
 public extension Raindrop {
 	typealias InvalidID = Identified.InvalidID
 	typealias UngenerableID = Identified.UngenerableID
+	typealias UngenerableIDs = Identified.UngenerableIDs
+	typealias ImpossibleFields = Catena.ImpossibleFields<Self>
 }
 
 // MARK: -
