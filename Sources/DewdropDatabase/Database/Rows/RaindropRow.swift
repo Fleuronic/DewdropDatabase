@@ -96,6 +96,7 @@ extension RaindropRow: Row {
 					creationDate: cacheCreationDate
 				)
 			},
+			reminder: nil, // TODO
 			isFavorite: isFavorite,
 			isBroken: isBroken,
 			creationDate: creationDate,
