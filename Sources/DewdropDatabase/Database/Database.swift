@@ -36,7 +36,7 @@ public struct Database<
 	FilterSpecifiedFields: FilterFields & Fields<Filter.Identified>,
 	HighlightSpecifiedFields: HighlightFields & Fields<Highlight.Identified>,
 	UserAuthenticatedSpecifiedFields: UserAuthenticatedFields & Fields<User.Identified>,
-	UserPublicSpecifiedFields: UserFields & Fields<User.Identified>,
+	UserSpecifiedFields: UserFields & Fields<User.Identified>,
 	BackupSpecifiedFields: BackupFields & Fields<Backup.Identified>
 >: @unchecked Sendable {
 	public let store: Store<ReadWrite>
@@ -74,7 +74,7 @@ public extension Database {
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
-		UserPublicSpecifiedFields,
+		UserSpecifiedFields,
 		BackupSpecifiedFields
 	> { .init(store: store) }
 
@@ -87,7 +87,7 @@ public extension Database {
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
-		UserPublicSpecifiedFields,
+		UserSpecifiedFields,
 		BackupSpecifiedFields
 	> { .init(store: store) }
 
@@ -100,7 +100,7 @@ public extension Database {
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
-		UserPublicSpecifiedFields,
+		UserSpecifiedFields,
 		BackupSpecifiedFields
 	> { .init(store: store) }
 
@@ -113,7 +113,7 @@ public extension Database {
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
-		UserPublicSpecifiedFields,
+		UserSpecifiedFields,
 		BackupSpecifiedFields
 	> { .init(store: store) }
 
@@ -126,7 +126,7 @@ public extension Database {
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
-		UserPublicSpecifiedFields,
+		UserSpecifiedFields,
 		BackupSpecifiedFields
 	> { .init(store: store) }
 
@@ -139,7 +139,7 @@ public extension Database {
 		Fields,
 		HighlightSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
-		UserPublicSpecifiedFields,
+		UserSpecifiedFields,
 		BackupSpecifiedFields
 	> { .init(store: store) }
 
@@ -152,7 +152,7 @@ public extension Database {
 		FilterSpecifiedFields,
 		Fields,
 		UserAuthenticatedSpecifiedFields,
-		UserPublicSpecifiedFields,
+		UserSpecifiedFields,
 		BackupSpecifiedFields
 	> { .init(store: store) }
 
@@ -166,7 +166,7 @@ public extension Database {
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
 		Fields,
-		UserPublicSpecifiedFields,
+		UserSpecifiedFields,
 		BackupSpecifiedFields
 	> { .init(store: store) }
 
@@ -192,7 +192,7 @@ public extension Database {
 		FilterSpecifiedFields,
 		HighlightSpecifiedFields,
 		UserAuthenticatedSpecifiedFields,
-		UserPublicSpecifiedFields,
+		UserSpecifiedFields,
 		Fields
 	> { .init(store: store) }
 }

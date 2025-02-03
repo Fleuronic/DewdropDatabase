@@ -8,11 +8,11 @@ import protocol Catena.Scoped
 
 extension Database {
 	#if swift(<6.0)
-	public typealias PublicUserFetchFields = UserPublicSpecifiedFields
+	public typealias PublicUserFetchFields = UserSpecifiedFields
 	public typealias AuthenticatedUserFetchFields = UserAuthenticatedSpecifiedFields
 	#endif
 
-	public func fetchUser(with id: User.ID) async -> SingleResult<UserPublicSpecifiedFields?> {
+	public func fetchUser(with id: User.ID) async -> SingleResult<UserSpecifiedFields?> {
 		await fetch(with: id).map(\.first)
 	}
 
